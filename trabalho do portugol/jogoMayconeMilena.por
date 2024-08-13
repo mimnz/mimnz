@@ -1,6 +1,6 @@
 programa
 {
-	inclua biblioteca Teclado
+	inclua biblioteca Teclado --> t
 	inclua biblioteca Util --> u
 	
 	funcao inicio()
@@ -18,30 +18,34 @@ programa
 		{
 			limpa()
 			valorAdivinha = u.sorteia(1, 10000)
-			para (copiaDiv = valorAdivinha; copiaDiv >= 1; numTentativas++)
+			para (copiaDiv = valorAdivinha; copiaDiv >= 2; numTentativas++)
 			{
 			copiaDiv = copiaDiv/2
 			limpa()
 			escreva("Seu número de tentativas : ", numTentativas, "\n")
+			}
 			escreva("Escolha um número: ")
 			leia(tentativa)
-			se (tentativa < valorAdivinha)
+			se (tentativa < valorAdivinha e numTentativas > 0)
 			{
-				escreva("O número secreto é maior do que o número sugerido!\n Pressione a tecla \'espaço\' para tentar novamente.")
+				escreva("Seu número de tentativas : ", numTentativas -= 1, "\n")
+				limpa()
+				escreva("O número secreto é maior do que o número sugerido!\n Pressione a tecla \"espaço\" para tentar novamente.")
+			}
+			se (tentativa < valorAdivinha e numTentativas == 0)
+			{
+				escreva("Seu número de tentativas acabou!")
 			}
 			se (tentativa > valorAdivinha)
 			{
-				escreva("O número secreto é menor do que o número sugerido!\n Pressione a tecla \'espaço\' para tentar novamente.")
+				escreva("O número secreto é menor do que o número sugerido!\n Pressione a tecla \"espaço\" para tentar novamente.")
 			}
 			se (tentativa == valorAdivinha)
 			{
 				limpa()
 				escreva("Você acertou!")
 			}
-			
 			}
 			
-	}
-
 	}
 }
