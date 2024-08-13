@@ -1,49 +1,51 @@
 programa
 {
+	inclua biblioteca Matematica --> m
 	inclua biblioteca Teclado --> t
 	inclua biblioteca Util --> u
 	
 	funcao inicio()
 	{
-	inteiro jogo, valorAdivinha, copiaDiv, tentativa
-	inteiro numTentativas = 0
-	escreva("Escolha um jogo a seguir:\n\n")
-	escreva("[1] Adivinhe o Número\n")
-	escreva("[2] Desafio da Tabuada\n")
-	escreva("[3] QUIZ\n")
-	escreva("[4] Jogo da Forca\n")
-	escreva("Jogo escolhido: ")
-		leia(jogo)
+	inteiro jogo = 0, valorAdivinha, tentativa
+	inteiro numTentativas = 7
+	escreva("Escolha um jogo a seguir:\n\n[1] Adivinhe o Número\n[2] Desafio da Tabuada\n[3] QUIZ\n[4] Jogo da Forca\nJogo escolhido: ")
+	leia(jogo)
 		se (jogo == 1)
 		{
 			limpa()
-			valorAdivinha = u.sorteia(1, 10000)
-			para (copiaDiv = valorAdivinha; copiaDiv >= 2; numTentativas++)
+			valorAdivinha = u.sorteia(1, 100)
+			faca 
 			{
-			copiaDiv = copiaDiv/2
-			limpa()
-			escreva("Seu número de tentativas : ", numTentativas, "\n")
-			}
-			escreva("Escolha um número: ")
-			leia(tentativa)
-			se (tentativa < valorAdivinha e numTentativas > 0)
-			{
-				escreva("Seu número de tentativas : ", numTentativas -= 1, "\n")
 				limpa()
-				escreva("O número secreto é maior do que o número sugerido!\n Pressione a tecla \"espaço\" para tentar novamente.")
+				escreva("Escolha um número entre 1 e 100.\n")
+				escreva("Seu número de tentativas : ", numTentativas, "\n")
+				escreva("Escolha um número: ")
+				leia(tentativa)
+				se (tentativa < valorAdivinha)
+				{
+					limpa()
+					numTentativas -= 1
+					escreva("O número secreto é maior do que o número sugerido!\n")
+					u.aguarde(2000)
+				}
+				se (tentativa > valorAdivinha)
+				{
+					limpa()
+					numTentativas -= 1
+					escreva("O número secreto é menor do que o número sugerido!\n")
+					u.aguarde(2000)
+				}
 			}
-			se (tentativa < valorAdivinha e numTentativas == 0)
-			{
-				escreva("Seu número de tentativas acabou!")
-			}
-			se (tentativa > valorAdivinha)
-			{
-				escreva("O número secreto é menor do que o número sugerido!\n Pressione a tecla \"espaço\" para tentar novamente.")
-			}
+			enquanto (numTentativas >= 1 e tentativa != valorAdivinha)
 			se (tentativa == valorAdivinha)
+				{
+				limpa()
+				escreva("Você acertou! O número secreto é ", valorAdivinha,"!")
+				}
+			se (tentativa != valorAdivinha e numTentativas == 0)
 			{
 				limpa()
-				escreva("Você acertou!")
+				escreva("Seu número de tentativas acabou! O número era ", valorAdivinha,". Boa sorte na próxima vez.")
 			}
 			}
 			
