@@ -40,88 +40,172 @@ programa
 		limpa()
 
 		//questao 1d
-		escreva("d. Quantos chocolates você pretende comer na sua vida? ")
+		escreva("d. Quantos chocolates (porção de 100g em média) você pretende comer na sua vida? ")
 		leia(chocolate)
 		se (chocolate < 10)
 		{
 			escreva("Nossa, você odeia chocolate ou só é fitness mesmo? ")
-			u.aguarde(3000)
-			limpa()
 		}
-		se (chocolate < 50 e chocolate > 9)
+		se (chocolate < 781 e chocolate > 9)
+		{
+			escreva("Você come bem pouco.")
+		}
+		se (chocolate < 1951 e chocolate > 780)
 		{
 			escreva("Até que é pouco.")
-			u.aguarde(3000)
-			limpa()
 		}
-		se (chocolate < 100 e chocolate > 49)
-		{
-			escreva("Equilibrado, se vocẽ tiver uma vida longa.")
-			u.aguarde(3000)
-			limpa()
-		}
-		se (chocolate < 200 e chocolate > 99)
+		se (chocolate < 3901 e chocolate > 1950)
 		{
 			escreva("Tá na média.")
-			u.aguarde(3000)
-			limpa()
 		}
-		se (chocolate > 199 e chocolate < 500)
+		se (chocolate > 3900 e chocolate < 6300)
 		{
 			escreva("Aparentemente você gosta bastante de chocolate.")
-			u.aguarde(3000)
-			limpa()
 		}
-		se (chocolate > 499)
+		se (chocolate > 6299)
 		{
-			escreva("OK, você é viciado ou vai viver muito (duvido, desse jeito).")
-			u.aguarde(3000)
-			limpa()
+			escreva("OK, você é viciado.")
 		}
+		u.aguarde(3000)
+			limpa()
 
 		//questao 1e
 		escreva("e. Se a sua idade, em segundos, é de 977 milhões, a sua idade convertida em anos é, mais ou menos, ", m.arredondar(977000000/24/60/60/365.25, 2), ".")
 		u.aguarde(5000)
 		limpa()
+		//questao 2
 		escreva("Questão 1 completa. Partindo para a questão 2...\n")
 		u.aguarde(2200)
-		escreva("a. Se a sua idade é de 977 milhões de segundos, sua idade em anos, só que em Mercúrio, é de", m.arredondar(977000000/24/60/60/365.25*0.2408467, 2), ".")
-		u.aguarde(2200)
+		escreva("a. Se a sua idade é de 977 milhões de segundos, sua idade em Mercúrio, é de ", m.arredondar(977000000/24/60/60/365.25*0.2408467, 2), " anos.")
+		u.aguarde(5000)
 		limpa()
-		escreva("b. Quantos anos você tem? ")
+		escreva("b. Vou converter sua idade terrestre para a que você teria em outro planeta do sistema solar.")
+		u.aguarde(2000)
+		escreva("\n Quantos anos você tem? ")
 		leia(idade)
 		escreva("Digite um planeta (ex: Marte): ")
 		leia(planeta)
+		cadeia planetas [20] = {"terra", "Terra","marte", "Marte", "venus", "vênus", "Vênus", "Venus","mercurio", "Mercurio", "Mercúrio", "mercúrio","jupiter", "Júpiter", "júpiter", "Jupiter","Urano", "urano", "netuno", "Netuno"}
+		inteiro i
+		logico fazparte = falso
+		para (i = 0; i < 20; i++)
+		{
+			se (planeta == planetas [i])
+			{
+				fazparte = verdadeiro
+			}
+		}
+		enquanto (fazparte == falso)
+		{
+			limpa()
+			escreva("O que você escreveu não está entre a lista de planetas do sistema solar ou foi escrito incorretamente.")
+			u.aguarde(2000)
+			limpa()
+			escreva("Digite novamente: ")
+			leia(planeta)
+			para (i = 0; i < 20; i++)
+		{
+			se (planeta == planetas [i])
+			{
+				fazparte = verdadeiro
+			}
+		}
+		}
 		se (planeta == "terra" ou planeta == "Terra")
 		{
-			
+			escreva("No planeta Terra, sua idade é a mesma (", idade, " anos).")
 		}
 		se (planeta == "marte" ou planeta == "Marte")
 		{
-			
+			escreva("Em Marte, sua idade é de ", m.arredondar(idade/1.8808158, 2), " anos.")	
 		}
 		se (planeta == "venus" ou planeta == "vênus" ou planeta == "Vênus" ou planeta == "Venus")
 		{
-			
+			escreva("No planeta de Vênus, sua idade é de ", m.arredondar(idade/0.61519726, 2), " anos.")	
 		}
 		se (planeta == "mercurio" ou planeta == "Mercurio" ou planeta == "Mercúrio" ou planeta == "mercúrio")
 		{
-			
+		escreva("Em Mercúrio, sua idade é de ", m.arredondar(idade/0.2408467, 2), " anos.")		
 		}
-		se (planeta == "terra" ou planeta == "Terra")
+		se (planeta == "jupiter" ou planeta == "Júpiter" ou planeta == "júpiter" ou planeta == "Jupiter")
 		{
-			
+		escreva("Em Júpiter, sua idade é de ", m.arredondar(idade/11.862615, 2), " anos.")		
 		}
-		se (planeta == "terra" ou planeta == "Terra")
+		se (planeta == "Urano" ou planeta == "urano")
 		{
-			
+		escreva("No planeta Urano, sua idade é de ", m.arredondar(idade/84.016846, 2), " anos.")		
 		}
-		se (planeta == "terra" ou planeta == "Terra")
+		se (planeta == "netuno" ou planeta == "Netuno")
 		{
-			
-		}se (planeta == "terra" ou planeta == "Terra")
-		{
-			
+		escreva("No planeta Netuno, sua idade é de ", m.arredondar(idade/164.79132, 2), " anos.")	
 		}
-	}
+		u.aguarde(3000)
+		limpa()	
+		//questao 3
+		escreva("Para a questão nº3, sabemos que 1:40:00 é o mesmo que 100 minutos. Se o aluno quer dividir igualmente para")
+		u.aguarde(2200)
+		escreva("\nas 6 matérias, basta dividir 100/6 = ", m.arredondar(100.0/6, 4), " minutos para cada matéria.")
+		u.aguarde(2200)
+		escreva("\nComo o valor não é exato, resta uma pequena quantidade de tempo equivalente ao descanso,\n")
+		u.aguarde(2000)
+		escreva("que é igual a ", 100%6, " minutos (dá até pra tirar uma soneca).")
+		u.aguarde(5000)
+		limpa()
+
+		//questao 4 (algoritmo já ta pronto, só pegar no pc da escola): calcular quantos pedacos dá para conseguir e a sobra
+		
+		//questao 5: pitágoras
+		real b, c
+		escreva("Vamos para a questão 5:\n")
+		u.aguarde(2000)
+		escreva("O Teorema de Pitágoras envolve a fórmula a² = b² + c²")
+		u.aguarde(2000)
+		escreva("\na. Sabendo que a proporção dos catetos é de é de 11,5m x 6,3m, a diagonal é equivalente a ", m.arredondar((m.raiz(11.5*11.5+6.3*6.3, 2.0)), 4), " metros.")
+		u.aguarde(3500)
+		escreva("\nb. Utilizando a mesma fórmula, se uma área em que o cateto b = ")
+		leia(b)
+		escreva("E o cateto c = ")
+		leia(c)
+		escreva("A hipotenusa (a) será ", m.arredondar(m.raiz((b*b+c*c), 2.0), 4), ".")
+		u.aguarde(5000)
+		limpa()
+
+		//questao 6: 5min de leitura por dia
+		inteiro minutoslidos
+		escreva("Uma pessoa que lê apenas 5 minutos por dia e 6 vezes na semana, lê 30 minutos por semana.")
+		u.aguarde(2200)
+		escreva("\nAnualmente, essa mesma pessoa lê ", (30*365/7)+(5*365%7), " minutos por ano.")
+		u.aguarde(3000)
+		escreva("\nSe você ler, durante 6 dias na semana, a quantidade em minutos de ")
+		leia(minutoslidos)
+		escreva("Por ano, você teria investido ", (minutoslidos*6*365/7)+(minutoslidos*365%7), " minutos na leitura, no total.")
+		u.aguarde(4000)
+		limpa()
+		
+		//questao 7: soma de todas as idades q alguem ja teve
+		escreva("Vamos para a questão 7:\n")
+		u.aguarde(2200)
+		escreva("Escreva sua idade (sim, de novo): ")
+		leia(idade)
+		escreva("A soma de todas as idades que você já teve é igual a ", (idade*(idade+1))/2)
+		u.aguarde(5000)
+		limpa()
+		
+		//questao 8: minutos para um download
+		real mb, mbps
+		escreva("Vamos para a questão 8:\n")
+		u.aguarde(2200)
+		escreva("Vou calcular o tempo, em minutos, necessário para baixar um arquivo, de acordo com o tamanho dele.\n")
+		u.aguarde(3000)
+		escreva("Qual o tamanho do arquivo desejado, em MB? ")
+		leia(mb)
+		escreva("E qual a velocidade, em Mbps, do link de internet que está usando? ")
+		leia(mbps)
+		escreva("Para que esse download seja completo, estima-se que seja necessário esperar ", m.arredondar(mb / mbps / 60.0, 3), " minutos, ou, mais precisamente, ", mb / mbps, " segundos.")
+		
+		//questao 9
+
+		
+		
+		}
 }
