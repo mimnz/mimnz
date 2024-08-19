@@ -1,0 +1,127 @@
+programa
+{
+	inclua biblioteca Util --> u
+	inclua biblioteca Matematica --> m
+	
+	funcao inicio()
+	{
+		inteiro idade, chocolate
+		cadeia planeta
+		//questao 1a
+		escreva("Código escrito pela Milena L. Muniz, do 1ºTDS 2024.\nRespondendo a lista de exercícios proposta... Comecando pela questão 1")
+		u.aguarde(2200)
+		escreva("\n\na. Quantas horas há em um ano?")
+		u.aguarde(2200)
+		escreva("\n\nUm ano tem 365,25 dias, na verdade.")
+		u.aguarde(2000)
+		escreva("\nNo nosso calendário, distribuimos de maneira que ficasse 365 dias e 366 dias a cada 4 anos.")
+		u.aguarde(3000)
+		escreva("\nPor isso, a resposta é ", 24 * 365.25, " horas.")
+		u.aguarde(4000)
+		limpa()
+
+		//questao 1b
+		escreva("b. Quantos minutos há em uma década?")
+		u.aguarde(2000)
+		escreva("\n\nEm uma hora, temos 60 minutos.")
+		u.aguarde(2000)
+		escreva("\nEm um dia, temos ", 24*60, " minutos, que multiplicados por 365,25, temos ", 24*60*365.25, " minutos por ano. ")
+		u.aguarde(3000)
+		escreva("\nComo não é um ano, mas uma década, esse valor multiplicado por 10 é ", 24*60*365.25*10, ".")
+		u.aguarde(5000)
+		limpa()
+
+		//questao 1c
+		escreva("c. Vou calcular, aproximadamente, quantos segundos de vida você tem.")
+		escreva("\nQuantos anos completos você tem? ")
+		leia(idade)
+		escreva("No dia e hora exatos do seu último aniversário, você completou ", idade*24*60*60*365.25, " segundos de vida, ", idade*24*60*365.25, " minutos, ", idade*24*365.25, " horas ou ", idade*365.25, " dias de idade.")
+		u.aguarde(8000)
+		limpa()
+
+		//questao 1d
+		escreva("d. Quantos chocolates você pretende comer na sua vida? ")
+		leia(chocolate)
+		se (chocolate < 10)
+		{
+			escreva("Nossa, você odeia chocolate ou só é fitness mesmo? ")
+			u.aguarde(3000)
+			limpa()
+		}
+		se (chocolate < 50 e chocolate > 9)
+		{
+			escreva("Até que é pouco.")
+			u.aguarde(3000)
+			limpa()
+		}
+		se (chocolate < 100 e chocolate > 49)
+		{
+			escreva("Equilibrado, se vocẽ tiver uma vida longa.")
+			u.aguarde(3000)
+			limpa()
+		}
+		se (chocolate < 200 e chocolate > 99)
+		{
+			escreva("Tá na média.")
+			u.aguarde(3000)
+			limpa()
+		}
+		se (chocolate > 199 e chocolate < 500)
+		{
+			escreva("Aparentemente você gosta bastante de chocolate.")
+			u.aguarde(3000)
+			limpa()
+		}
+		se (chocolate > 499)
+		{
+			escreva("OK, você é viciado ou vai viver muito (duvido, desse jeito).")
+			u.aguarde(3000)
+			limpa()
+		}
+
+		//questao 1e
+		escreva("e. Se a sua idade, em segundos, é de 977 milhões, a sua idade convertida em anos é, mais ou menos, ", m.arredondar(977000000/24/60/60/365.25, 2), ".")
+		u.aguarde(5000)
+		limpa()
+		escreva("Questão 1 completa. Partindo para a questão 2...\n")
+		u.aguarde(2200)
+		escreva("a. Se a sua idade é de 977 milhões de segundos, sua idade em anos, só que em Mercúrio, é de", m.arredondar(977000000/24/60/60/365.25*0.2408467, 2), ".")
+		u.aguarde(2200)
+		limpa()
+		escreva("b. Quantos anos você tem? ")
+		leia(idade)
+		escreva("Digite um planeta (ex: Marte): ")
+		leia(planeta)
+		se (planeta == "terra" ou planeta == "Terra")
+		{
+			
+		}
+		se (planeta == "marte" ou planeta == "Marte")
+		{
+			
+		}
+		se (planeta == "venus" ou planeta == "vênus" ou planeta == "Vênus" ou planeta == "Venus")
+		{
+			
+		}
+		se (planeta == "mercurio" ou planeta == "Mercurio" ou planeta == "Mercúrio" ou planeta == "mercúrio")
+		{
+			
+		}
+		se (planeta == "terra" ou planeta == "Terra")
+		{
+			
+		}
+		se (planeta == "terra" ou planeta == "Terra")
+		{
+			
+		}
+		se (planeta == "terra" ou planeta == "Terra")
+		{
+			
+		}se (planeta == "terra" ou planeta == "Terra")
+		{
+			
+		}
+	}
+}
