@@ -153,7 +153,21 @@ programa
 		limpa()
 
 		//questao 4 (algoritmo já ta pronto, só pegar no pc da escola): calcular quantos pedacos dá para conseguir e a sobra
-		
+		inteiro pedaco, tabua, qntpedacos, resto
+		escreva("Vamos para a questão 4:")
+		u.aguarde(2200)
+		escreva("\nVou calcular quantos pedaços de tábua e o restante que você terá a partir das medidas escolhidas.")
+		u.aguarde(3000)
+		escreva("\nQual o tamanho, em cm, do pedaço da tábua que você quer?\n")
+		leia(pedaco)
+		escreva("Qual o tamanho, em cm, da tábua que você tem?\n")
+		leia(tabua)
+		qntpedacos = tabua/pedaco
+		resto = tabua%pedaco
+		escreva("Com essas medidas, você consegue ", qntpedacos, " pedaços de ", pedaco, "cm e sobra ", resto, "cm.")
+		u.aguarde(5000)
+		limpa()
+			
 		//questao 5: pitágoras
 		real b, c
 		escreva("Vamos para a questão 5:\n")
@@ -202,10 +216,19 @@ programa
 		escreva("E qual a velocidade, em Mbps, do link de internet que está usando? ")
 		leia(mbps)
 		escreva("Para que esse download seja completo, estima-se que seja necessário esperar ", m.arredondar(mb / mbps / 60.0, 3), " minutos, ou, mais precisamente, ", mb / mbps, " segundos.")
+		u.aguarde(4000)
 		
-		//questao 9
+		//questao 9: pergunta a área a ser pintada, e informa a quantidade de latas a serem compradas e o valor total (bonus: resto)
+		real area, qntinta, valor
+		inteiro qntlatas
 
-		
-		
+		escreva("Qual a área, em metros, que deseja pintar? ")
+		leia(area)
+		qntinta = (area/3)
+		para (qntlatas = 0; qntlatas >= area/18; qntlatas++)
+		{
+			valor = 480*qntlatas
+		}
+		escreva("Você precisará compras ", qntlatas, " e custará ", valor, ". Restará ")
 		}
 }
