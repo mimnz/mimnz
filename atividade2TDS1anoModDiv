@@ -5,10 +5,11 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro idade, chocolate
+		inteiro chocolate
+		real idade
 		cadeia planeta
 		//questao 1a
-		escreva("Código escrito pela Milena L. Muniz, do 1ºTDS 2024.\nRespondendo a lista de exercícios proposta... Comecando pela questão 1")
+		escreva("Código escrito pela Milena L. Muniz, do 1ºTDS 2024.\nEsse programa inclui todos os exercícios da lista proposta... Comecando pela questão 1")
 		u.aguarde(2200)
 		escreva("\n\na. Quantas horas há em um ano?")
 		u.aguarde(2200)
@@ -81,14 +82,14 @@ programa
 		limpa()
 		escreva("b. Vou converter sua idade terrestre para a que você teria em outro planeta do sistema solar.")
 		u.aguarde(2000)
-		escreva("\n Quantos anos você tem? ")
+		escreva("\nQuantos anos você tem? ")
 		leia(idade)
 		escreva("Digite um planeta (ex: Marte): ")
 		leia(planeta)
-		cadeia planetas [20] = {"terra", "Terra","marte", "Marte", "venus", "vênus", "Vênus", "Venus","mercurio", "Mercurio", "Mercúrio", "mercúrio","jupiter", "Júpiter", "júpiter", "Jupiter","Urano", "urano", "netuno", "Netuno"}
+		cadeia planetas [22] = {"terra", "Terra","marte", "Marte", "venus", "vênus", "Vênus", "Venus","mercurio", "Mercurio", "Mercúrio", "mercúrio","jupiter", "Júpiter", "júpiter", "Jupiter","Urano", "urano", "netuno", "Netuno","saturno", "Saturno"}
 		inteiro i
 		logico fazparte = falso
-		para (i = 0; i < 20; i++)
+		para (i = 0; i < 22; i++)
 		{
 			se (planeta == planetas [i])
 			{
@@ -103,7 +104,7 @@ programa
 			limpa()
 			escreva("Digite novamente: ")
 			leia(planeta)
-			para (i = 0; i < 20; i++)
+			para (i = 0; i < 22; i++)
 		{
 			se (planeta == planetas [i])
 			{
@@ -118,6 +119,10 @@ programa
 		se (planeta == "marte" ou planeta == "Marte")
 		{
 			escreva("Em Marte, sua idade é de ", m.arredondar(idade/1.8808158, 2), " anos.")	
+		}
+		se (planeta == "saturno" ou planeta == "Saturno")
+		{
+			escreva("Em Saturno, sua idade é de ", m.arredondar(idade/29.457, 2), " anos.")	
 		}
 		se (planeta == "venus" ou planeta == "vênus" ou planeta == "Vênus" ou planeta == "Venus")
 		{
@@ -146,10 +151,11 @@ programa
 		u.aguarde(2200)
 		escreva("\nas 6 matérias, basta dividir 100/6 = ", m.arredondar(100.0/6, 4), " minutos para cada matéria.")
 		u.aguarde(2200)
-		escreva("\nComo o valor não é exato, resta uma pequena quantidade de tempo equivalente ao descanso,\n")
+		escreva("\nComo o valor não é exato, podemos descontar uma pequena quantidade de tempo equivalente ao descanso,\n")
 		u.aguarde(2000)
-		escreva("que é igual a ", 100%6, " minutos (dá até pra tirar uma soneca).")
-		u.aguarde(5000)
+		escreva("que é igual a ", 100%6, " minutos (dá até pra tirar uma soneca),")
+		u.aguarde(3000)
+		escreva("\nE poderiamos dividir 96 por 6, equivalente a ", 96 / 6, ", sendo uma quantia exata para cada matéria.")
 		limpa()
 
 		//questao 4 (algoritmo já ta pronto, só pegar no pc da escola): calcular quantos pedacos dá para conseguir e a sobra
@@ -215,20 +221,33 @@ programa
 		leia(mb)
 		escreva("E qual a velocidade, em Mbps, do link de internet que está usando? ")
 		leia(mbps)
-		escreva("Para que esse download seja completo, estima-se que seja necessário esperar ", m.arredondar(mb / mbps / 60.0, 3), " minutos, ou, mais precisamente, ", mb / mbps, " segundos.")
+		escreva("Para que esse download seja completo, estima-se que seja necessário esperar ", m.arredondar(mb / mbps / 60.0, 3), " minutos, ou, mais precisamente, ", m.arredondar(mb / mbps, 4), " segundos.")
 		u.aguarde(4000)
+		limpa()
 		
 		//questao 9: pergunta a área a ser pintada, e informa a quantidade de latas a serem compradas e o valor total (bonus: resto)
-		real area, qntinta, valor
-		inteiro qntlatas
+		real area, valor = 0.0, qntinta
+		inteiro qntlatas = 0
 
-		escreva("Qual a área, em metros, que deseja pintar? ")
+		escreva("Qual a área, em metros quadrados, que deseja pintar? ")
 		leia(area)
-		qntinta = (area/3)
-		para (qntlatas = 0; qntlatas >= area/18; qntlatas++)
+		qntinta = area / 3
+		qntlatas = qntinta / 18
+		se (qntinta > qntlatas * 18)
 		{
-			valor = 480*qntlatas
+			qntlatas += 1		
 		}
-		escreva("Você precisará compras ", qntlatas, " e custará ", valor, ". Restará ")
+		valor = 480.0*qntlatas
+		se (qntlatas > 1)
+		{
+			escreva("Você precisará comprar ", qntlatas, " latas e custará ", valor, " reais.")			
 		}
+		senao
+		{
+		escreva("Você precisará comprar apenas uma lata e custará ", valor, " reais.")
+		}
+		u.aguarde(5000)
+		limpa()
+			escreva("Obrigada por chegar até aqui!")
+	}
 }
