@@ -1,0 +1,199 @@
+programa
+{
+	inclua biblioteca Util --> u
+	inclua biblioteca Matematica --> m
+	logico questao
+	cadeia alternativa
+	caracter vouf
+	inteiro n = 0
+	
+	funcao inicio()
+	{
+		escreva("OPERADORES RELACIONAIS E LÓGICOS\n1. Informe o valor lógico (verdadeiro ou falso) para as proposições lógicas abaixo:\n")
+		questao = ((2 * 4 == 24/3))
+		alternativa = "2 * 4 == 24/3"
+		vf()
+		questao = ((15 % 4) < (19 % 6))
+		alternativa = "(15 % 4) < (19 % 6)"
+		vf()
+		questao = (nao(2 < 5) != (8 == 8))
+		alternativa = "nao(2 < 5) != (8 == 8)"
+		vf()
+		questao = verdadeiro ou falso
+		alternativa = "verdadeiro ou falso"
+		vf()
+		questao = (2*2 == m.potencia(2, 2))
+		alternativa = "2*2 == Matematica.potencia(2, 2)"
+		vf()
+		questao = verdadeiro e ( (7 / 2) > 3.5 )
+		alternativa = "verdadeiro e ( (7 / 2) > 3.5 )"
+		vf()
+		questao = ((m.arredondar( 2.8, 0 ) == 3) e (m.raiz(9, 2) == 3))
+		alternativa = "(Mat.arredondar( 2.8, 0 ) == 3) e (Mat.raiz(9, 2) == 3)"
+		vf()
+		u.aguarde(3000)
+		limpa()
+		escreva("OPERADORES ARITMÉTICOS E BIBLIOTECAS\n2. Faça um programa que calcule equações de segundo grau; Seu algoritmo deve pedir ao usuário 3 valores (a, b, c); Ao final, você deve apresentar:\n")
+		inteiro a, b, c, delta
+		real x1, x2
+		escreva("Escolha o valor de a: ")
+		leia(a)
+		escreva("Escolha o valor de b: ")
+		leia(b)
+		escreva("Escolha o valor de c: ")
+		leia(c)
+		escreva("A operação é lida como ", a, "x² + ", b, "x + ", c, " = 0\n")
+		delta = b * b - 4 * a * c
+		escreva("O valor do Δ é ", delta, "\n")
+		se (delta < 0)
+		{
+			escreva("A operação não possui raiz, pois o Δ é menor que zero.")
+		}
+		senao
+		{
+			x1 = (-b + m.raiz(delta, 2))/(2*a)
+			x2 = (-b - m.raiz(delta, 2))/(2*a)
+			escreva("A raiz x1 é ", x1, " e a raiz x2 é ", x2)
+		}
+		u.aguarde(6500)
+		limpa()
+		real km, preco
+		inteiro dias
+		escreva("3. Escreva um programa que pergunte a quantidade de km percorridos por um carro alugado pelo usuário, assim como a quantidade de dias pelos quais o carro foi alugado. \nCalcule o preço a pagar, sabendo que o carro custa R$ 60,00 por dia e R$ 0,15 por km rodado.\n")
+		escreva("Por quantos dias você alugou o carro? ")
+		leia(dias)
+		escreva("E quantos km você correu com ele? ")
+		leia(km)
+		preco = ((60.0 * dias) + (0.15 * km))
+		escreva("Então você terá que pagar R$", preco, ".")
+		u.aguarde(5000)
+		limpa()
+		real temperatura
+		escreva("4. Faça um Programa que peça uma temperatura e informe na tela se o valor é positivo ou negativo.\nComo está o clima, em °C? ")
+		leia(temperatura)
+		se (temperatura < 0)
+		{
+			escreva("A temperatura está negativa.")
+		}
+		se (temperatura == 0)
+		{
+			escreva("A temperatura está em 0 graus.")
+		}
+		se (temperatura > 0)
+		{
+			escreva("A temperatura está positiva.")
+		}
+		u.aguarde(4500)
+		limpa()
+		real n1, n2, n3
+		inteiro i
+		escreva("5. Faça um Programa que peça dois números e imprima o maior deles.\nEscolha um número: ")
+		leia(n1)
+		escreva("Escolha mais um: ")
+		leia(n2)
+		se (n1 > n2)
+		{
+			escreva(n1, " é maior que ", n2)
+		}
+		se (n1 == n2)
+		{
+			escreva(n1, " é igual a ", n2)
+		}
+		se (n1 < n2)
+		{
+			escreva(n1, " é menor que ", n2)
+		}
+		u.aguarde(3000)
+		limpa()
+		escreva("6. Faça um Programa que peça quatro números e imprima o maior deles.\nEscolha um número: ")
+		leia(n1)
+		para (i = 0; i < 3; i++)
+		{
+		escreva("Escolha mais um: ")
+		leia(n2)
+		se (n2 > n1)
+		{
+			n1 = n2
+		}
+		}
+		escreva("O maior número é o ", n1,".")
+		u.aguarde(3000)
+		limpa()
+		escreva("7. Faça um Programa que leia três números e mostre-os em ordem decrescente.\nEscolha um número:")
+		leia(n1)
+		escreva("Escolha mais um: ")
+		leia(n2)
+		escreva("Escolha mais um: ")
+		leia(n3)
+		se (n1 > n2 e n1 < n3)
+		{
+			escreva("A ordem decrescente é ", n3, ", ", n1, ", ", n2, ".")
+		}
+		se (n1 < n2 e n1 > n3)
+		{
+			escreva("A ordem decrescente é ", n2, ", ", n1, ", ", n3, ".")
+		}
+		se (n1 < n2 e n2 < n3)
+		{
+			escreva("A ordem decrescente é ", n3, ", ", n2, ", ", n1, ".")
+		}
+		se (n3 < n2 e n2 < n1)
+		{
+			escreva("A ordem decrescente é ", n1, ", ", n2, ", ", n3, ".")
+		}
+		se (n1 < n3 e n3 < n2)
+		{
+			escreva("A ordem decrescente é ", n2, ", ", n3, ", ", n1, ".")
+		}
+		se (n2 < n3 e n3 < n1)
+		{
+			escreva("A ordem decrescente é ", n1, ", ", n3, ", ", n2, ".")
+		}
+		u.aguarde(3000)
+		limpa()
+		escreva("8. Dados três valores verifiquem se eles podem ser os comprimentos dos lados de um triângulo. Se forem, verifique se compõem um triângulo equilátero, isósceles ou escaleno. Informar se não compõem nenhum triângulo.\nDados de entrada: três lados de um provável triangulo;\nDados de saída: Não compõem triângulo, triângulo equilátero, triângulo isósceles ou triângulo escaleno.\n")
+		escreva("Escolha o valor do lado 'A': ")
+		leia(n1)
+		escreva("Escolha o valor do lado 'B': ")
+		leia(n2)
+		escreva("Escolha o valor do lado 'C': ")
+		leia(n3)
+		se (n1 == n2 e n1 == n3 e n1 != 0)
+		{
+			escreva("É um triângulo equilátero")
+		}
+		se (n1 == 0 ou n2 == 0 ou n3 == 0)
+		{
+			escreva("Não é um triângulo (não tem 3 lados)")
+		}
+		se (n1 == n2 e n1 != n3 e n1 != 0 e n3 != 0)
+		{
+			escreva("É um triângulo isósceles")
+		}
+		se (n1 != n2 e n1 != n3 e n2 != n3 e n1 != 0 e n3 != 0 e n2 != 0)
+		{
+			escreva("É um triângulo escaleno")
+		}
+		u.aguarde(3000)
+		limpa()
+		escreva("9. Faça um Programa que verifique se uma letra digitada é vogal ou consoante.\n")
+		caracter consoantes [] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'}
+		caracter vogais []
+	}
+	
+	
+	funcao vf()
+	{
+		n += 1
+		se (questao == verdadeiro)
+		{
+			vouf = 'V'
+		}
+		senao
+		{
+			vouf = 'F'
+		}
+		escreva("\n", n, ". (", vouf, ") ", alternativa)
+		u.aguarde(1000)
+	}
+}
