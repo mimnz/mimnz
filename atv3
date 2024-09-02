@@ -9,6 +9,7 @@ programa
 	
 	funcao inicio()
 	{
+		//questão 1
 		escreva("OPERADORES RELACIONAIS E LÓGICOS\n1. Informe o valor lógico (verdadeiro ou falso) para as proposições lógicas abaixo:\n")
 		questao = ((2 * 4 == 24/3))
 		alternativa = "2 * 4 == 24/3"
@@ -33,6 +34,8 @@ programa
 		vf()
 		u.aguarde(3000)
 		limpa()
+
+		//questão 2
 		escreva("OPERADORES ARITMÉTICOS E BIBLIOTECAS\n2. Faça um programa que calcule equações de segundo grau; Seu algoritmo deve pedir ao usuário 3 valores (a, b, c); Ao final, você deve apresentar:\n")
 		inteiro a, b, c, delta
 		real x1, x2
@@ -57,6 +60,8 @@ programa
 		}
 		u.aguarde(6500)
 		limpa()
+
+		//questão 3
 		real km, preco
 		inteiro dias
 		escreva("3. Escreva um programa que pergunte a quantidade de km percorridos por um carro alugado pelo usuário, assim como a quantidade de dias pelos quais o carro foi alugado. \nCalcule o preço a pagar, sabendo que o carro custa R$ 60,00 por dia e R$ 0,15 por km rodado.\n")
@@ -68,6 +73,8 @@ programa
 		escreva("Então você terá que pagar R$", preco, ".")
 		u.aguarde(5000)
 		limpa()
+
+		//questão 4
 		real temperatura
 		escreva("4. Faça um Programa que peça uma temperatura e informe na tela se o valor é positivo ou negativo.\nComo está o clima, em °C? ")
 		leia(temperatura)
@@ -87,6 +94,8 @@ programa
 		limpa()
 		real n1, n2, n3
 		inteiro i
+
+		//questão 5
 		escreva("5. Faça um Programa que peça dois números e imprima o maior deles.\nEscolha um número: ")
 		leia(n1)
 		escreva("Escolha mais um: ")
@@ -105,6 +114,8 @@ programa
 		}
 		u.aguarde(3000)
 		limpa()
+
+		//questão 6
 		escreva("6. Faça um Programa que peça quatro números e imprima o maior deles.\nEscolha um número: ")
 		leia(n1)
 		para (i = 0; i < 3; i++)
@@ -119,7 +130,9 @@ programa
 		escreva("O maior número é o ", n1,".")
 		u.aguarde(3000)
 		limpa()
-		escreva("7. Faça um Programa que leia três números e mostre-os em ordem decrescente.\nEscolha um número:")
+
+		//questão 7
+		escreva("7. Faça um Programa que leia três números e mostre-os em ordem decrescente.\nEscolha um número: ")
 		leia(n1)
 		escreva("Escolha mais um: ")
 		leia(n2)
@@ -151,6 +164,8 @@ programa
 		}
 		u.aguarde(3000)
 		limpa()
+
+		//questão 8
 		escreva("8. Dados três valores verifiquem se eles podem ser os comprimentos dos lados de um triângulo. Se forem, verifique se compõem um triângulo equilátero, isósceles ou escaleno. Informar se não compõem nenhum triângulo.\nDados de entrada: três lados de um provável triangulo;\nDados de saída: Não compõem triângulo, triângulo equilátero, triângulo isósceles ou triângulo escaleno.\n")
 		escreva("Escolha o valor do lado 'A': ")
 		leia(n1)
@@ -176,11 +191,126 @@ programa
 		}
 		u.aguarde(3000)
 		limpa()
+
+		//questão 9
 		escreva("9. Faça um Programa que verifique se uma letra digitada é vogal ou consoante.\n")
-		caracter consoantes [] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'}
-		caracter vogais []
+		caracter consoantes [] = {'b', 'c', 'ç', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'ñ', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z', 'B', 'C', 'Ç', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'}
+		caracter vogais [] = {'a','e', 'i', 'o', 'u', 'â', 'ã', 'á', 'à', 'é', 'è', 'ê', 'í', 'ì', 'î', 'ó', 'ò', 'ô','õ', 'ù', 'ú', 'û', 'A', 'E', 'I', 'O', 'U', 'Â', 'Ã', 'Á', 'À', 'É', 'È', 'Ê', 'Í', 'Ì', 'Î', 'Ó', 'Ò', 'Ô', 'Õ', 'Ù', 'Ú', 'Û'}
+		caracter letra
+		logico vogal = falso
+		logico consoante = falso
+		escreva("Digite uma letra: ")
+		leia(letra)
+		para (i = 0; i < 44; i++)
+		{
+			se (letra == vogais [i])
+			{
+				vogal = verdadeiro
+				consoante = falso
+			}
+		}
+		para (i = 0; i < 46; i++)
+		{
+				se (letra == consoantes [i])
+			{
+				consoante = verdadeiro
+				vogal = falso
+			}
+		}
+		se (consoante == verdadeiro)
+		{				
+			escreva(letra," é uma consoante.")
+		}
+		se (vogal == verdadeiro)
+		{
+			escreva(letra," é uma vogal.")
+		}
+		se (consoante == falso e vogal == falso)
+		{
+		escreva("\" ", letra, "\" não é uma letra do alfabeto.")
+		}
+		u.aguarde(4500)
+		limpa()
+
+		//questão 10
+		escreva("10. Faça um Programa que leia um ano qualquer e informe se ele é bissexto. Se for informado um ano negativo ou 0 o ano atual deve ser considerado.")
+		inteiro ano
+		escreva("\nDigite algum ano aleatório (ex: 2024): ")
+		leia(ano)
+
+		// Se o ano for menor ou igual a 0, atribui 2024
+		se (ano <= 0)
+		{
+   			 ano = 2024
+		}
+		
+		// Verifica se o ano é bissexto
+		se (ano % 4 == 0)
+		{
+    			se (ano % 100 == 0)
+    			{
+        			se (ano % 400 == 0)
+        			{
+          			escreva(ano, " é um ano bissexto.")
+        			}
+        			senao
+        			{
+            			escreva(ano, " não é um ano bissexto.")
+        			}
+    			}
+    			senao
+    			{
+     	   		escreva(ano, " é um ano bissexto.")
+    			}
+		}
+		senao
+		{
+    			escreva(ano, " não é um ano bissexto.")
+		}
+		u.aguarde(4500)
+		limpa()
+
+		//questão 11
+
+		escreva("11. Escreva um programa que leia a velocidade de um carro. Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que foi multado. A multa vai custar R$7,00 por cada km acima do limite.\nQual a velocidade, em km, que o carro está percorrendo? ")
+		leia(km)
+		se (km > 80)
+		{
+			escreva("Você foi multado! Portanto, terá que pagar uma multa de R$ ", (km - 80)*7.0, ".")
+		}
+		senao
+		{
+			escreva("Limite não ultrapassado, não se preocupe com a multa.")
+		}
+
+		//questão 12
+
+		cadeia nome
+		real media
+		escreva("Faça um programa para a leitura de duas notas parciais de um aluno. O programa deve calcular a média alcançada por aluno e apresentar:\na. A mensagem \"Aprovado\", se a média alcançada for maior ou igual a sete;\nb. A mensagem \"Reprovado\", se a média for menor do que sete;\nc. A mensagem \"Aprovado com Distinção\", se a média for igual a dez.\nDigite o nome do aluno: ")
+		leia(nome)
+
+		escreva("E qual a primeira nota parcial de ", nome,"? (entre 0 e 10) ")
+		leia(n1)
+		escreva("E qual a segunda nota parcial de ", nome,"? (entre 0 e 10) ")
+		leia(n2)
+		media = (n1 + n2)/2
+		se (media < 7)
+		{
+			escreva("Com uma média de ", media, ", ", nome, " foi Reprovado.")
+		}
+		se (media >= 7 e media < 10)
+		{
+			escreva("Com uma média de ", media, ", ", nome, " foi Aprovado.")
+		}
+		se (media == 10)
+		{
+			escreva("Parabéns! Com uma média de ", media, ", ", nome, " foi Aprovado com Distinção.")
+		}
+		
+		//questão 13
+		
 	}
-	
 	
 	funcao vf()
 	{
