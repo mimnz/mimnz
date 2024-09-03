@@ -36,7 +36,7 @@ programa
 		limpa()
 
 		//questão 2
-		escreva("OPERADORES ARITMÉTICOS E BIBLIOTECAS\n2. Faça um programa que calcule equações de segundo grau; Seu algoritmo deve pedir ao usuário 3 valores (a, b, c); Ao final, você deve apresentar:\n")
+		escreva("OPERADORES ARITMÉTICOS E BIBLIOTECAS\n2. Faça um programa que calcule equações de segundo grau; \nSeu algoritmo deve pedir ao usuário 3 valores (a, b, c); Ao final, você deve apresentar:\n")
 		inteiro a, b, c, delta
 		real x1, x2
 		escreva("Escolha o valor de a: ")
@@ -64,7 +64,7 @@ programa
 		//questão 3
 		real km, preco
 		inteiro dias
-		escreva("3. Escreva um programa que pergunte a quantidade de km percorridos por um carro alugado pelo usuário, assim como a quantidade de dias pelos quais o carro foi alugado. \nCalcule o preço a pagar, sabendo que o carro custa R$ 60,00 por dia e R$ 0,15 por km rodado.\n")
+		escreva("3. Escreva um programa que pergunte a quantidade de km percorridos por um carro alugado pelo \nusuário, assim como a quantidade de dias pelos quais o carro foi alugado. \nCalcule o preço a pagar, sabendo que o carro custa R$ 60,00 por dia e R$ 0,15 por km rodado.\n")
 		escreva("Por quantos dias você alugou o carro? ")
 		leia(dias)
 		escreva("E quantos km você correu com ele? ")
@@ -166,7 +166,7 @@ programa
 		limpa()
 
 		//questão 8
-		escreva("8. Dados três valores verifiquem se eles podem ser os comprimentos dos lados de um triângulo. Se forem, verifique se compõem um triângulo equilátero, isósceles ou escaleno. Informar se não compõem nenhum triângulo.\nDados de entrada: três lados de um provável triangulo;\nDados de saída: Não compõem triângulo, triângulo equilátero, triângulo isósceles ou triângulo escaleno.\n")
+		escreva("8. Dados três valores verifiquem se eles podem ser os comprimentos dos lados de um triângulo. \nSe forem, verifique se compõem um triângulo equilátero, isósceles ou escaleno. Informar se não compõem nenhum triângulo.\nDados de entrada: três lados de um provável triangulo;\nDados de saída: Não compõem triângulo, triângulo equilátero, triângulo isósceles ou triângulo escaleno.\n")
 		escreva("Escolha o valor do lado 'A': ")
 		leia(n1)
 		escreva("Escolha o valor do lado 'B': ")
@@ -175,19 +175,19 @@ programa
 		leia(n3)
 		se (n1 == n2 e n1 == n3 e n1 != 0)
 		{
-			escreva("É um triângulo equilátero")
+			escreva("É um triângulo equilátero.")
 		}
 		se (n1 == 0 ou n2 == 0 ou n3 == 0)
 		{
-			escreva("Não é um triângulo (não tem 3 lados)")
+			escreva("Não é um triângulo (não tem 3 lados).")
 		}
 		se (n1 == n2 e n1 != n3 e n1 != 0 e n3 != 0)
 		{
-			escreva("É um triângulo isósceles")
+			escreva("É um triângulo isósceles.")
 		}
 		se (n1 != n2 e n1 != n3 e n2 != n3 e n1 != 0 e n3 != 0 e n2 != 0)
 		{
-			escreva("É um triângulo escaleno")
+			escreva("É um triângulo escaleno.")
 		}
 		u.aguarde(3000)
 		limpa()
@@ -272,7 +272,7 @@ programa
 
 		//questão 11
 
-		escreva("11. Escreva um programa que leia a velocidade de um carro. Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que foi multado. A multa vai custar R$7,00 por cada km acima do limite.\nQual a velocidade, em km, que o carro está percorrendo? ")
+		escreva("11. Escreva um programa que leia a velocidade de um carro.\nSe ele ultrapassar 80Km/h, mostre uma mensagem dizendo que foi multado. A multa vai custar R$7,00 por cada km acima do limite.\nQual a velocidade, em km, que o carro está percorrendo? ")
 		leia(km)
 		se (km > 80)
 		{
@@ -282,17 +282,21 @@ programa
 		{
 			escreva("Limite não ultrapassado, não se preocupe com a multa.")
 		}
+		u.aguarde(5000)
+		limpa()
 
 		//questão 12
 
 		cadeia nome
 		real media
-		escreva("Faça um programa para a leitura de duas notas parciais de um aluno. O programa deve calcular a média alcançada por aluno e apresentar:\na. A mensagem \"Aprovado\", se a média alcançada for maior ou igual a sete;\nb. A mensagem \"Reprovado\", se a média for menor do que sete;\nc. A mensagem \"Aprovado com Distinção\", se a média for igual a dez.\nDigite o nome do aluno: ")
+		escreva("12. Faça um programa para a leitura de duas notas parciais de um aluno. O programa deve calcular a média alcançada por aluno e apresentar:\na. A mensagem \"Aprovado\", se a média alcançada for maior ou igual a sete;\nb. A mensagem \"Reprovado\", se a média for menor do que sete;\nc. A mensagem \"Aprovado com Distinção\", se a média for igual a dez.")
+		u.aguarde(6000)
+		limpa()
+		escreva("Digite o nome do aluno: ")
 		leia(nome)
-
-		escreva("E qual a primeira nota parcial de ", nome,"? (entre 0 e 10) ")
+		escreva("E qual a primeira nota parcial de ", nome,"? (entre 0 e 10): ")
 		leia(n1)
-		escreva("E qual a segunda nota parcial de ", nome,"? (entre 0 e 10) ")
+		escreva("E qual a segunda nota parcial de ", nome,"? (entre 0 e 10): ")
 		leia(n2)
 		media = (n1 + n2)/2
 		se (media < 7)
@@ -307,9 +311,60 @@ programa
 		{
 			escreva("Parabéns! Com uma média de ", media, ", ", nome, " foi Aprovado com Distinção.")
 		}
+		u.aguarde(5000)
+		limpa()
 		
 		//questão 13
-		
+
+			inteiro pedido, quantidade
+		real valor = 0.0
+		escreva("13. Escreva um algoritmo que leia o código do item pedido, a quantidade e calcule o valor a ser pago por aquele lanche.\nNeste algoritmo deve ser usado a estrutura de condicional “escolha”.\n")
+		escreva("\nVeja a Tabela seguinte:\n100 - Cachorro Quente - 5.00\n101 - Bauru - 2.60\n102 - Bauru com Ovo - 3.80\n103 - Hambúrguer - 9.00\n104 - Cheeseburguer - 11.00\n105 - Refrigerante - 3.00\n106 - Semente dos Deuses - 1000.00")
+		escreva("\nDigite o código do pedido: ")
+		leia(pedido)
+		escreva("Quantas porções você vai pedir? ")
+		leia(quantidade)
+		escolha(pedido)
+		{
+			caso 100:
+			escreva("Pedido selecionado: Cachorro Quente")
+			valor = quantidade * 5.00
+			pare
+			
+			caso 101:
+			escreva("Pedido selecionado: Bauru")
+			valor = quantidade * 2.60
+			pare
+			
+			caso 102:
+			escreva("Pedido selecionado: Bauru com ovo")
+			valor = quantidade * 3.80
+			pare
+			
+			caso 103:
+			escreva("Pedido selecionado: Hambúrguer")
+			valor = quantidade * 9.00
+			pare
+			
+			caso 104:
+			escreva("Pedido selecionado: Cheeseburguer")
+			valor = quantidade * 11.00
+			pare
+			
+			caso 105:
+			escreva("Pedido selecionado: Refrigerante")
+			valor = quantidade * 3.00
+			pare
+			
+			caso 106:
+			escreva("Pedido selecionado: Semente dos Deuses")
+			valor = quantidade * 1000.00
+			pare
+		}
+		escreva("\nO valor total ficou R$ ", valor, ".")
+		u.aguarde(5000)
+		limpa()
+		escreva("Fim do Algoritmo. Obrigada por chegar até aqui :)")
 	}
 	
 	funcao vf()
