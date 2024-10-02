@@ -1,0 +1,157 @@
+programa
+{
+	inclua biblioteca Util --> u
+
+	inteiro i
+	funcao inicio()
+	{
+		caracter q
+		limpa()
+		div(46)
+		escreva("Atividade Avaliativa - Estruturas de Repetição\n")
+		div(46)
+		escreva("[1] Países A e B\n[2] Soma e média\n[3] Maior dos 5\n[4] Potenciação\n[5] Ímpar, Par\n[6] Sequência de Fibonacci\n[7] Fatorial\n[8] Menor, Maior e Soma\n[9] mMs de 0 a 1000\nSua escolha: ")
+		leia(q)
+		se (q == '1')
+		{
+			q1()
+		}
+		senao se (q == '2')
+		{
+			q2()
+		}
+		senao se (q == '3')
+		{
+			q3()
+		}
+		senao se (q == '4')
+		{
+			q4()
+		}
+		senao se (q == '5')
+		{
+			q5()
+		}
+		senao se (q == '6')
+		{
+			q6()
+		}
+		senao se (q == '7')
+		{
+			q7()
+		}
+		senao se (q == '8')
+		{
+			q8()
+		}
+		senao se (q == '9')
+		{
+			q9()
+		}
+		senao 
+		{
+			limpa()
+			escreva("Parâmetros Inválidos!")
+			u.aguarde(1000)
+			inicio()
+		}
+		
+	}
+	funcao div(inteiro max)
+	{
+		para (i = 0; i < max; i++)
+		{ 
+			escreva("_") 
+		}
+		escreva("\n\n")
+	}
+	funcao q1()
+	{
+		limpa()
+		div(106)
+		escreva("Questão 1\nSupondo que a população de um país A seja da ordem de 80000 habitantes com uma taxa anual de crescimento\nde 3% e que a população de B seja 200000 habitantes com uma taxa de crescimento de 1.5%, faça um programa\nque calcule e escreva o número de anos necessários para que a população do país A ultrapasse ou iguale a\npopulação do país B, mantidas as taxas de crescimento.\n")
+		div(106)
+		voltar()
+	}
+	funcao q2()
+	{
+		limpa()
+		div(76)
+		escreva("Questão 2\nFaça um programa que leia 5 números e informe a soma e a média dos números.\n")
+		div(76)
+		voltar()
+	}
+	funcao q3()
+	{
+		limpa()
+		div(76)
+		escreva("Questão 3\nFaça um programa que leia 5 números e informe o maior dos números.\n")
+		div(76)
+		inteiro nums [5]
+		inteiro maior = 0
+		para (i = 0; i < 5; i++)
+		{
+			escreva("Escolha o ", i+1, "º número: ")
+			leia(nums [i])
+			se (nums [i] == nums [0])
+			{
+				maior = nums[0]
+			}
+			se (nums [i] > maior)
+			{
+				maior = nums[i]
+			}
+		}
+		voltar()
+	}
+	funcao q4()
+	{
+		limpa()
+		div(106)
+		escreva("Questão 4\nFaça um programa que peça dois números, base e expoente, calcule e mostre o primeiro número elevado ao\nsegundo número. \n\nNão utilize a função de potência da linguagem.\n")
+		div(106)
+		voltar()
+	}
+	funcao q5()
+	{
+		limpa()
+		div(106)
+		
+		div(106)
+		voltar()
+	}
+	funcao q6()
+	{
+		limpa()
+		voltar()
+	}
+	funcao q7()
+	{
+		limpa()
+		voltar()
+	}
+	funcao q8()
+	{
+		limpa()
+		voltar()
+	}
+	funcao q9()
+	{
+		limpa()
+		voltar()
+	}
+	funcao voltar()
+	{
+		cadeia volte = " "
+		div(31)
+		escreva("Pressione 'enter' para voltar.\n")
+		enquanto (volte != "")
+		{
+			leia(volte)
+		}
+		se (volte == "")
+		{
+			inicio()
+		}
+	}
+}
