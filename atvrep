@@ -115,29 +115,41 @@ programa
 	funcao q5()
 	{
 		limpa()
-		div(106)
-		
-		div(106)
+		div(108)
+		escreva("Questão 5\nFaça um programa que peça 5 números inteiros. Mostre a quantidade de números pares e a quantidade de números\nimpares informados.\n")
+		div(108)
 		voltar()
 	}
 	funcao q6()
 	{
 		limpa()
+		div(108)
+		escreva("Questão 6\nA série de Fibonacci é formada pela sequência 0,1,1,2,3,5,8,13,21,34,55,... (Observe muito bem a razão entre\nos termos da sequência)\n\na. Faça um programa que gere a série de Fibonacci até que o termo seja maior que 500.\n\nb. Faça um programa capaz de gerar a série até o n−ésimo termo, que deve ser informado pelo usuário.\n")
+		div(108)
 		voltar()
 	}
 	funcao q7()
 	{
 		limpa()
+		div(107)
+		escreva("Questão 7\nFaça um programa que calcule o fatorial de um número inteiro fornecido pelo usuário. Ex.: 5!=5.4.3.2.1=120,\n ou seja, fatorial de 5 é 120 ou 5! = 120.\n")
+		div(107)
 		voltar()
 	}
 	funcao q8()
 	{
 		limpa()
+		div(101)
+		escreva("Questão 8\nFaça um programa que, dado um conjunto de N números, determine o menor, o maior e a soma dos valores.\n")
+		div(101)
 		voltar()
 	}
 	funcao q9()
 	{
 		limpa()
+		div(101)
+		escreva("Questão 9\nFaça um programa que, dado um conjunto de N números, determine o menor, o maior e a soma dos valores.\n(OBS: O programa deve aceitar apenas números entre 0 e 1000.\n")
+		div(101)
 		voltar()
 	}
 	funcao voltar()
