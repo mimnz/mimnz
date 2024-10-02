@@ -122,10 +122,23 @@ programa
 	}
 	funcao q6()
 	{
+		inteiro nums [3] = {0, 1, 1}
 		limpa()
 		div(108)
 		escreva("Questão 6\nA série de Fibonacci é formada pela sequência 0,1,1,2,3,5,8,13,21,34,55,... (Observe muito bem a razão entre\nos termos da sequência)\n\na. Faça um programa que gere a série de Fibonacci até que o termo seja maior que 500.\n\nb. Faça um programa capaz de gerar a série até o n−ésimo termo, que deve ser informado pelo usuário.\n")
 		div(108)
+		escreva("Foi observado que, a partir do número 2, o valor atual é a soma dos últimos dois valores anteriores.\nSequência A:\n\n")
+		u.aguarde(1500)
+			enquanto (nums [i] < 500)
+			{
+				para (i = 2; i < 3; i++)
+				{
+					escreva(nums [i])
+					i -= 2
+				}
+			}
+		escreva(" - \n\nSequência B:\n\n")
+		escreva("Digite um número para o programa interrompa após o último número da sequência ultrapassá-lo: ")
 		voltar()
 	}
 	funcao q7()
