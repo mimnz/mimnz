@@ -3,7 +3,6 @@ programa
 	inclua biblioteca Util --> u
 
 	inteiro i
-	inteiro nums [5]
 	funcao inicio()
 	{
 		caracter q
@@ -79,12 +78,13 @@ programa
 			pais_b += pais_b*0.015
 			anos += 1
 		}
-		escreva("Resposta: O País A ultrapassará, com ", pais_a, " habitantes, o País B, com ", pais_b, " habitantes, em ", anos, " anos.\n")
+		escreva("Resposta: O País A ultrapassará, com ", pais_a, " habitantes, o País B, com ", pais_b, " habitantes, em ", anos, " anos.")
 		voltar()
 	}
 	funcao q2() //feita
 	{
 		limpa()
+		inteiro nums [5]
 		real soma = 0.0
 		div(76)
 		escreva("Questão 2\nFaça um programa que leia 5 números e informe a soma e a média dos números.\n")
@@ -101,12 +101,13 @@ programa
 			escreva(" + ", nums[i])
 		}
 		escreva(" = ", soma, "\n")
-		escreva(soma, " / ", 5.0, " = ", soma/5, "\n")
+		escreva(soma, " / ", 5.0, " = ", soma/5)
 		voltar()
 	}
 	funcao q3() //feita
 	{
 		limpa()
+		inteiro nums [5]
 		div(76)
 		escreva("Questão 3\nFaça um programa que leia 5 números e informe o maior dos números.\n")
 		div(76)
@@ -124,6 +125,7 @@ programa
 				maior = nums[i]
 			}
 		}
+		escreva("\nO maior número é o ", maior, ".")
 		voltar()
 	}
 	funcao q4() //feita
@@ -156,13 +158,14 @@ programa
 				escreva(" * ", base)
 				resultado = resultado*base
 			}
-			escreva(" = ", resultado, "\n")
+			escreva(" = ", resultado)
 			}
 			voltar()
 		}
 	funcao q5() //feita
 	{
 		limpa()
+		inteiro nums [5]
 		inteiro par = 0, impar = 0
 		div(108)
 		escreva("Questão 5\nFaça um programa que peça 5 números inteiros. Mostre a quantidade de números pares e a quantidade de números\nimpares informados.\n")
@@ -180,28 +183,99 @@ programa
 				impar += 1
 			}
 		}
-		escreva("Há ", par, " pares e ", impar, " ímpares.\n")
+		escreva("Há ", par, " pares e ", impar, " ímpares.")
 		voltar()
 	}
-	funcao q6() //revisar
+	funcao q6() //feita
 	{
-		inteiro nums [3] = {0, 1, 1}
+		inteiro nums [3], seqb [99999], n_seq, c = 0
 		limpa()
 		div(108)
 		escreva("Questão 6\nA série de Fibonacci é formada pela sequência 0,1,1,2,3,5,8,13,21,34,55,... (Observe muito bem a razão entre\nos termos da sequência)\n\na. Faça um programa que gere a série de Fibonacci até que o termo seja maior que 500.\n\nb. Faça um programa capaz de gerar a série até o n−ésimo termo, que deve ser informado pelo usuário.\n")
 		div(108)
 		escreva("Foi observado que, a partir do número 2, o valor atual é a soma dos últimos dois valores anteriores.\nSequência A:\n\n")
 		u.aguarde(1500)
+		nums [0] = 0
+		nums [1] = 1
+		nums [2] = 1
+		i = 0
+		escreva(nums [0], " - ", nums [1], " - ", nums [2])
 			enquanto (nums [i] < 500)
 			{
-				para (i = 2; i < 3; i++)
+				para (i = 0; i < 3; i++)
 				{
-					escreva(nums [i])
-					i -= 2
+					se (i == 0)
+					{
+						nums [0] = nums [1] + nums [2]
+						se (nums [2] > 500)
+						{
+							pare
+						}
+					}
+					senao se (i == 1)
+					{
+						nums [1] = nums [0] + nums [2]
+						se (nums [0] > 500)
+						{
+							pare
+						}
+					}
+					senao
+					{
+						nums [2] = nums [1] + nums [0]
+						se (nums [1] > 500)
+						{
+							pare
+						}
+					}
+						escreva(" - ", nums[i])
+				}
+				se (i == 3)
+				{
+					i = 0
 				}
 			}
 		escreva(" - \n\nSequência B:\n\n")
-		escreva("Digite um número para o programa interrompa após o último número da sequência ultrapassá-lo: ")
+		escreva("Digite o número de valores desejado (max: 99999): ")
+		leia(n_seq)
+
+		seqb [0] = 0
+		seqb [1] = 1
+		seqb [2] = 1
+		
+		para (i = 0; i < n_seq; i++)
+		{
+			se (i > 2)
+			{
+				seqb[i] = seqb[i-1] + seqb[i-2]
+			}
+			senao
+			{
+				se (i == 0)
+				{
+					seqb[i] = 0
+				}
+				se (i == 1)
+				{
+					seqb[i] = 1
+				}
+				se (i == 2)
+				{
+					seqb[i] = 1
+				}
+			}
+			escreva(seqb[i])
+			c += 1
+			se (i != n_seq - 1)
+			{
+				escreva(" - ")
+			}
+			se (c > 19)
+			{
+				escreva("\n")
+				c = 0
+			}
+		}
 		voltar()
 	}
 	funcao q7() //feita
@@ -233,7 +307,7 @@ programa
 		div(101)
 		escreva("Qual o número de valores que você quer definir?: ")
 		leia(n_de_num)
-		inteiro numeros [100000]
+		inteiro numeros [99999]
 		escreva("Escolha o 1º número: ")
 		leia(numeros[0])
 		maior = numeros[0]
@@ -258,7 +332,7 @@ programa
 		{
 			escreva(" + ", numeros[i])
 		}
-		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".\n")
+		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".")
 		voltar()
 	}
 	funcao q9() //feita
@@ -270,7 +344,7 @@ programa
 		div(101)
 		escreva("Qual o número de valores que você quer definir?: ")
 		leia(n_de_num)
-		inteiro numeros [100000]
+		inteiro numeros [99999]
 		escreva("Escolha o 1º número: ")
 		leia(numeros[0])
 		enquanto (numeros[0] < 0 ou numeros[0] > 1000)
@@ -305,14 +379,13 @@ programa
 		{
 			escreva(" + ", numeros[i])
 		}
-		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".\n")
+		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".")
 		voltar()
 	}
 	funcao voltar() // botao voltar 'enter'
 	{
 		cadeia volte = " "
-		div(31)
-		escreva("Pressione 'enter' para voltar.\n")
+		escreva("\n\nPressione 'enter' para voltar.\n")
 		enquanto (volte != "")
 		{
 			leia(volte)
