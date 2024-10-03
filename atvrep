@@ -3,6 +3,7 @@ programa
 	inclua biblioteca Util --> u
 
 	inteiro i
+	inteiro nums [5]
 	funcao inicio()
 	{
 		caracter q
@@ -57,7 +58,7 @@ programa
 		}
 		
 	}
-	funcao div(inteiro max)
+	funcao div(inteiro max) //divisoria
 	{
 		para (i = 0; i < max; i++)
 		{ 
@@ -65,29 +66,50 @@ programa
 		}
 		escreva("\n\n")
 	}
-	funcao q1()
+	funcao q1() //feita
 	{
 		limpa()
 		div(106)
 		escreva("Questão 1\nSupondo que a população de um país A seja da ordem de 80000 habitantes com uma taxa anual de crescimento\nde 3% e que a população de B seja 200000 habitantes com uma taxa de crescimento de 1.5%, faça um programa\nque calcule e escreva o número de anos necessários para que a população do país A ultrapasse ou iguale a\npopulação do país B, mantidas as taxas de crescimento.\n")
 		div(106)
+		inteiro pais_a = 80000, pais_b = 200000, anos = 0
+		enquanto (pais_a < pais_b)
+		{
+			pais_a += pais_a*0.03
+			pais_b += pais_b*0.015
+			anos += 1
+		}
+		escreva("Resposta: O País A ultrapassará, com ", pais_a, " habitantes, o País B, com ", pais_b, " habitantes, em ", anos, " anos.\n")
 		voltar()
 	}
-	funcao q2()
+	funcao q2() //feita
 	{
 		limpa()
+		real soma = 0.0
 		div(76)
 		escreva("Questão 2\nFaça um programa que leia 5 números e informe a soma e a média dos números.\n")
 		div(76)
+		para (i = 0; i < 5; i++)
+		{
+			escreva("Escolha o ", i+1, "º número: ")
+			leia(nums [i])
+			soma += nums[i]
+		}
+		escreva(nums[0])
+		para (i = 1; i < 5; i++)
+		{
+			escreva(" + ", nums[i])
+		}
+		escreva(" = ", soma, "\n")
+		escreva(soma, " / ", 5.0, " = ", soma/5, "\n")
 		voltar()
 	}
-	funcao q3()
+	funcao q3() //feita
 	{
 		limpa()
 		div(76)
 		escreva("Questão 3\nFaça um programa que leia 5 números e informe o maior dos números.\n")
 		div(76)
-		inteiro nums [5]
 		inteiro maior = 0
 		para (i = 0; i < 5; i++)
 		{
@@ -104,23 +126,64 @@ programa
 		}
 		voltar()
 	}
-	funcao q4()
+	funcao q4() //feita
 	{
 		limpa()
+		inteiro base, expoente, resultado
 		div(106)
 		escreva("Questão 4\nFaça um programa que peça dois números, base e expoente, calcule e mostre o primeiro número elevado ao\nsegundo número. \n\nNão utilize a função de potência da linguagem.\n")
 		div(106)
-		voltar()
-	}
-	funcao q5()
+		escreva("Digite o valor da base: ")
+		leia(base)
+		escreva("Digite o valor do expoente: ")
+		leia(expoente)
+		se (expoente == 1)
+		{
+			resultado = base
+			escreva(base, "¹ = ", resultado)
+		}
+		senao se (expoente == 0)
+		{
+			resultado = 1
+			escreva(base, " com expoente 0 é igual a ", resultado)
+		}
+		senao
+		{
+			resultado = base
+			escreva(base)
+			para (i = 2; i <= expoente; i++)
+			{
+				escreva(" * ", base)
+				resultado = resultado*base
+			}
+			escreva(" = ", resultado, "\n")
+			}
+			voltar()
+		}
+	funcao q5() //feita
 	{
 		limpa()
+		inteiro par = 0, impar = 0
 		div(108)
 		escreva("Questão 5\nFaça um programa que peça 5 números inteiros. Mostre a quantidade de números pares e a quantidade de números\nimpares informados.\n")
 		div(108)
+		para (i = 0; i < 5; i++)
+		{
+			escreva("Escolha o ", i+1, "º número: ")
+			leia(nums [i])
+			se (nums[i] % 2 == 0)
+			{
+				par += 1
+			}
+			senao
+			{
+				impar += 1
+			}
+		}
+		escreva("Há ", par, " pares e ", impar, " ímpares.\n")
 		voltar()
 	}
-	funcao q6()
+	funcao q6() //revisar
 	{
 		inteiro nums [3] = {0, 1, 1}
 		limpa()
@@ -141,31 +204,111 @@ programa
 		escreva("Digite um número para o programa interrompa após o último número da sequência ultrapassá-lo: ")
 		voltar()
 	}
-	funcao q7()
+	funcao q7() //feita
 	{
+		inteiro n, valor, valorinicial
 		limpa()
 		div(107)
 		escreva("Questão 7\nFaça um programa que calcule o fatorial de um número inteiro fornecido pelo usuário. Ex.: 5!=5.4.3.2.1=120,\n ou seja, fatorial de 5 é 120 ou 5! = 120.\n")
 		div(107)
+		escreva("Escolha um valor: ")
+		leia(valorinicial)
+		valor = valorinicial
+		escreva(valorinicial, "! = ", valorinicial, " * ")
+		para (n = valor-1; n > 1; n--)
+		{
+			valor = valor*n
+			escreva(n, " * ")
+		}
+		valor = valor*n
+		escreva(n, " = ", valor, "\n")
 		voltar()
 	}
-	funcao q8()
+	funcao q8() //feita
 	{
 		limpa()
+		inteiro n_de_num, maior, menor, soma = 0
 		div(101)
 		escreva("Questão 8\nFaça um programa que, dado um conjunto de N números, determine o menor, o maior e a soma dos valores.\n")
 		div(101)
+		escreva("Qual o número de valores que você quer definir?: ")
+		leia(n_de_num)
+		inteiro numeros [100000]
+		escreva("Escolha o 1º número: ")
+		leia(numeros[0])
+		maior = numeros[0]
+		menor = maior
+		soma = maior
+		para (i = 1; i < n_de_num; i++)
+		{
+			escreva("Escolha o ", i+1, "º número: ")
+			leia(numeros[i])
+			soma += numeros[i]
+			se (maior < numeros[i])
+			{
+				maior = numeros[i]
+			}
+			se (menor > numeros[i])
+			{
+				menor = numeros[i]
+			}
+		}
+		escreva(numeros[0])
+		para (i = 1; i < n_de_num; i++)
+		{
+			escreva(" + ", numeros[i])
+		}
+		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".\n")
 		voltar()
 	}
-	funcao q9()
+	funcao q9() //feita
 	{
 		limpa()
+		inteiro n_de_num, maior, menor, soma = 0
 		div(101)
 		escreva("Questão 9\nFaça um programa que, dado um conjunto de N números, determine o menor, o maior e a soma dos valores.\n(OBS: O programa deve aceitar apenas números entre 0 e 1000.\n")
 		div(101)
+		escreva("Qual o número de valores que você quer definir?: ")
+		leia(n_de_num)
+		inteiro numeros [100000]
+		escreva("Escolha o 1º número: ")
+		leia(numeros[0])
+		enquanto (numeros[0] < 0 ou numeros[0] > 1000)
+		{
+			escreva("\nValor Negado (Aceitando entre 0 e 1000)! Tente Novamente.\nEscolha o 1º número: ")
+			leia(numeros[0])
+		}
+		maior = numeros[0]
+		menor = maior
+		soma = maior
+		para (i = 1; i < n_de_num; i++)
+		{
+			escreva("Escolha o ", i+1, "º número: ")
+			leia(numeros[i])
+			enquanto (numeros[i] < 0 ou numeros[i] > 1000)
+			{
+				escreva("\nValor Negado (Aceitando entre 0 e 1000)! Tente Novamente.\nEscolha o ", i+1, "º número: ")
+				leia(numeros[i])
+			}
+			soma += numeros[i]
+			se (maior < numeros[i])
+			{
+				maior = numeros[i]
+			}
+			se (menor > numeros[i])
+			{
+				menor = numeros[i]
+			}
+		}
+		escreva(numeros[0])
+		para (i = 1; i < n_de_num; i++)
+		{
+			escreva(" + ", numeros[i])
+		}
+		escreva(" = ", soma, "\nO maior número é \"", maior, "\" e o menor número é \"", menor, "\".\n")
 		voltar()
 	}
-	funcao voltar()
+	funcao voltar() // botao voltar 'enter'
 	{
 		cadeia volte = " "
 		div(31)
