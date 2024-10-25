@@ -1,0 +1,244 @@
+programa
+{
+	inclua biblioteca Util --> u
+
+	inteiro i
+	funcao inicio()
+	{
+		caracter q
+		limpa()
+		div()
+		escreva("Atividade Avaliativa - Vetores e Matrizes\n")
+		div()
+		escreva("[1] Escreva 5 números\n[2] Escreva 5 números (ordem inversa)\n[3] Média das 4 notas\n[4] Pares entre os 10\n[5] Lista de 10 números aleatórios não repetidos\n[6] Lista Aleatória de 30 números\n[7] Função de Lista Ímpar Par\n[8] Leia Matriz\n[9] Nome de Aventureiro\nSua escolha: ")
+		leia(q)
+		se (q == '1')
+		{
+			q1()
+		}
+		senao se (q == '2')
+		{
+			q2()
+		}
+		senao se (q == '3')
+		{
+			q3()
+		}
+		senao se (q == '4')
+		{
+			q4()
+		}
+		senao se (q == '5')
+		{
+			q5()
+		}
+		senao se (q == '6')
+		{
+			q6()
+		}
+		senao se (q == '7')
+		{
+			q7()
+		}
+		senao se (q == '8')
+		{
+			q8()
+		}
+		senao se (q == '9')
+		{
+			q9()
+		}
+		senao 
+		{
+			limpa()
+			escreva("Parâmetros Inválidos!")
+			u.aguarde(1000)
+			inicio()
+		}
+		
+	}
+	funcao div() //divisoria
+	{
+		para (i = 0; i < 76; i++)
+		{ 
+			escreva("_") 
+		}
+		escreva("\n\n")
+	}
+	funcao q1() //feita
+	{
+		limpa()
+		div()
+		escreva("Questão 1\nEscreva um algoritmo que dado um vetor, já inicializado, de 5 números\ninteiros escolhidos por você, exiba cada elemento desse vetor, um\nabaixo do outro.\n")
+		div()
+		inteiro nums [] = {u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000)}
+		para (i = 0; i < 5; i++)
+		{
+			escreva(i+1, "º: ", nums[i], "\n")
+		}
+		voltar()
+	}
+	funcao q2() //feita
+	{
+		limpa()
+		real soma = 0.0
+		div()
+		escreva("Questão 2\nEscreva um algoritmo que exiba o mesmo vetor do exercício anterior em\nordem inversa.\n")
+		div()
+		inteiro nums [] = {u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000), u.sorteia(0, 10000)}
+		para (i = 4; i > -1; i--)
+		{
+			escreva(i+1, "º: ", nums[i], "\n")
+		}
+		voltar()
+	}
+	funcao q3() //feita
+	{
+		limpa()
+		div()
+		escreva("Questão 3\nEscreva um algoritmo que leia 4 notas, mostre as notas e a média na\ntela. As notas devem ser armazenadas em um vetor de 4 posições. A\nleitura das notas deve ser realizada dentro de um laço de repetição.\n")
+		div()
+		real notas [4], soma = 0.0
+		para (i = 0; i < 4; i++)
+		{
+			escreva("Digite a ", i+1, "ª nota: ")
+			leia(notas[i])
+			soma += notas[i]
+		}
+		escreva("(")
+		para (i = 0; i < 3; i++)
+		{
+			escreva(notas[i], " + ")
+		}
+		escreva(notas[i], ") / 4 = ", soma/4, "\n")
+		voltar()
+	}
+	funcao q4() //feita
+	{
+		limpa()
+		div()
+		escreva("Questão 4\nEscreva um algoritmo que peça 10 números inteiros ao usuário e\nguarde-os em um vetor. Ao final, mostre quais foram os números pares\ninformados e em que posições do vetor estão armazenados. Fórmula para\nidentificar números pares (VARIÁVEL % 2 = 0)\n")
+		div()
+		inteiro nums [10], r = 0
+		para (i = 0; i < 10; i++)
+		{
+			escreva("Digite o ", i+1, "º número: ")
+			leia(nums[i])
+		}
+		limpa()
+		para (i = 0; i < 10; i++)
+		{
+			se (nums[i] % 2 == 0)
+			{
+				escreva("\"", nums[i], "\" na posição ", i+1, "\n")
+				r += 1
+			}
+			se (r == 0 e i == 9)
+			{
+				escreva("Não há pares em nenhuma das posições.\n")
+			}
+		}
+		voltar()
+		}
+	funcao q5() //feita
+	{
+		limpa()
+		inteiro nums [10], teste
+		div()
+		escreva("Questão 5\nEscreva um algoritmo que preencha automaticamente um vetor de 10\nposições com 10 números entre 1 e 100, gerados aleatoriamente pelo\ncomputador e depois mostre os valores gerados na tela. O vetor não\npode conter número repetidos.\n")
+		div()
+		nums[0] = u.sorteia(1, 100)
+		para (i = 1; i < 10; i++)
+		{
+			teste = u.sorteia(1, 100)
+			
+				enquanto (teste == nums[i-1])
+				{
+					para (inteiro o = 1; o < 10; o++)
+					{
+						teste = u.sorteia(1, 100)
+					}
+				}
+			nums[i] = teste
+			escreva(nums[i], "\n")
+		}
+		voltar()
+	}
+	funcao q6() //feita
+	{
+		limpa()
+		div()
+		escreva("Questão 6\nEscreva um algoritmo que preencha um vetor de 30 posições com números\nentre 1 e 15 sorteados pelo computador. Depois disso, peça para o\nusuário digitar um número (chave) e seu programa deve mostrar em que\nposições essa chave foi encontrada. Mostre também quantas vezes a\nchave foi sorteada.\n")
+		div()
+		inteiro nums[30], chave = 0, v = 0
+		nums[0] = u.sorteia(1, 100)
+		para (i = 1; i < 30; i++)
+		{
+			nums[i] = u.sorteia(1, 15)
+		}
+		escreva("Escolha um número entre 1 e 15: ")
+		enquanto (chave > 15 ou chave < 1)
+		{
+			leia(chave)
+		}
+		para (i = 0; i < 30; i++)
+		{
+			se (nums[i] == chave)
+			{
+				v += 1
+				escreva("A chave ", chave, " foi encontrada na posição ", i, ".\n")
+			}
+		}
+		se (v == 0)
+		{
+			escreva(chave, " não foi sorteado nenhuma vez.\n")
+		}
+		se (v == 1)
+		{
+			escreva(chave, " foi sorteado 1 vez.\n")
+		}
+		se (v > 1)
+		{
+			escreva(chave, " foi sorteado ", v, " vezes.\n")
+		}
+		voltar()
+	}
+	funcao q7()
+	{
+		limpa()
+		div()
+		escreva("Questão 7\nEscreva um algoritmo que:\n\na. Peça ao usuário 5 números inteiros ÍMPARES (garanta essa\nrestrição). Armazene esses valores em um vetor chamado\n“listadeImpares”.\n\nb. Peça ao usuário 5 números inteiros PARES (garanta essa restrição).\nArmazene esses valores em um vetor chamado “listadePares”.\n\nc. Crie um terceiro vetor com 10 posições. Esse vetor deve ser\npreenchido com os valores desses dois vetores intercalados, ou\nseja, um número ímpar, um número par.\n\nd. Crie uma função que exiba esse vetor, recebendo o vetor como\nparâmetro.\n")
+		div()
+		voltar()
+	}
+	funcao q8()
+	{
+		limpa()
+		div()
+		escreva("Questão 8\nEscreva um algoritmo que leia uma matriz de inteiros com 3 linhas e\n5 colunas com valores informados pelo usuário. Ao final, mostre:\nquais são os números pares digitados e a posição (linha, coluna) em\nque eles foram armazenados.\n")
+		div()
+		voltar()
+	}
+	funcao q9()
+	{
+		limpa()
+		div()
+		escreva("Geradores de nome de Aventureiro são um fenômeno na internet. Faça\num gerador de “qual é” baseado, por exemplo, no dia, mês e ano de\nnascimento, cor da blusa, autor, livro favorito ou mesmo gerando\nfrases a partir de números aleatórios. Fique livre para escolher\noutros exemplos.\n")
+		div()
+		voltar()
+	}
+	funcao voltar() // botao voltar 'enter'
+	{
+		cadeia volte = " "
+		div()
+		escreva("Pressione 'enter' para voltar.\n")
+		enquanto (volte != "")
+		{
+			leia(volte)
+		}
+		se (volte == "")
+		{
+			inicio()
+		}
+	}
+}
