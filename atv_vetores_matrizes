@@ -207,8 +207,35 @@ programa
 	{
 		limpa()
 		div()
+		inteiro listadeImpares [5], listadePares [5], intercalados [10]
 		escreva("Questão 7\nEscreva um algoritmo que:\n\na. Peça ao usuário 5 números inteiros ÍMPARES (garanta essa\nrestrição). Armazene esses valores em um vetor chamado\n“listadeImpares”.\n\nb. Peça ao usuário 5 números inteiros PARES (garanta essa restrição).\nArmazene esses valores em um vetor chamado “listadePares”.\n\nc. Crie um terceiro vetor com 10 posições. Esse vetor deve ser\npreenchido com os valores desses dois vetores intercalados, ou\nseja, um número ímpar, um número par.\n\nd. Crie uma função que exiba esse vetor, recebendo o vetor como\nparâmetro.\n")
 		div()
+		para (i = 0; i < 5; i++)
+		{
+			escreva("Digite o ", i+1, "º número ímpar: ")
+			leia(listadeImpares[i])
+			enquanto (listadeImpares[i] % 2 == 0)
+			{
+				escreva("\nValor inválido.\n\nDigite o ", i+1, "º número ímpar: ")
+				leia(listadeImpares[i])
+			}
+		}
+		para (i = 0; i < 5; i++)
+		{
+			escreva("Digite o ", i+1, "º número par: ")
+			leia(listadePares[i])
+			enquanto (listadePares[i] % 2 != 0)
+			{
+				escreva("\nValor inválido.\n\nDigite o ", i+1, "º número par: ")
+				leia(listadePares[i])
+			}
+		}
+		para (i = 0; i < 10; i+=2)
+		{
+			intercalados[i] = listadeImpares[i/2]
+			intercalados[i+1] = listadePares[i/2]
+			escreva(intercalados[i], "\n", intercalados[i+1], "\n")
+		}
 		voltar()
 	}
 	funcao q8()
