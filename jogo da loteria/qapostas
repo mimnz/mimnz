@@ -1,0 +1,16 @@
+<?php
+
+qapostas();
+function qapostas(){
+do {
+	system('clear');
+	$n_apostas = readline("Quantas apostas você deseja comprar?: ");
+	if (!is_numeric($n_apostas))
+	{
+		print "Por favor, insira um número inteiro.\n";
+	}
+} while (!is_numeric($n_apostas) || intval($n_apostas) != $n_apostas);
+
+echo "Você comprou $n_apostas apostas.";
+}
+?>
