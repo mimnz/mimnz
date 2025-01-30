@@ -1,8 +1,20 @@
 $sorteado = rand  (00,$max);
 $nun_sorteado = [];
  $numero_dezenas = [];
- 
 
+ 
+function sorteio( $e_premiado, $tipo)
+
+if ($tipo == megasena)
+{
+  $max_sorteio = 60;
+  if ($e_premiado == true)
+{
+  $max_dezenas = 6;
+ 
+}
+  $max_dezenas = 
+}
 for ($i=1; $i <= 60; $i++) { 
     
     
