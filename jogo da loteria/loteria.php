@@ -168,7 +168,7 @@ function sorteio_numeros($tipo, $quantidade_dezenas) {
             $numeros_sorteados[] = $sorteado;
         }
     }
-
+      sort($numeros_sorteados);
     return $numeros_sorteados;
 }
 
