@@ -33,6 +33,7 @@ function menu() {
 
 function qapostas($tipo) {
     global $total_apostas;
+    global $jogo;
 
     do {
         system('clear');
@@ -45,36 +46,76 @@ function qapostas($tipo) {
     echo "Você comprou $n_apostas apostas.\n";
     $total_apostas += $n_apostas;
 
-    // Menu para escolher como definir as dezenas
     $opcao_qdezenas = 0;
-    while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) {
-        system('clear');
-        div(15);
-        echo ("\n\n[1] Comprar a mesma quantidade de dezenas para todas as apostas\n\n[2] Comprar dezenas manualmente para cada aposta\n\n");
-        div(15);
-        $opcao_qdezenas = readline("Sua escolha: ");
+    if ($jogo != 4)
+    {
+        while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) 
+        {
+            system('clear');
+            div(15);
+            echo ("\n\n[1] Comprar a mesma quantidade de dezenas para todas as apostas\n\n[2] Comprar dezenas manualmente para cada aposta\n\n");
+            div(15);
+            $opcao_qdezenas = readline("Sua escolha: ");
+        }
+    } else
+    {
+        $opcao_qdezenas = 1;
     }
 
-    $valor_total = 0; // Inicializando o valor total
+    $valor_total = 0;
     $quantidade_dezenas_por_aposta = [];
+    global $min_dezenas, $max_dezenas;
 
-    if ($opcao_qdezenas == 1) {
-        // Definir a mesma quantidade de dezenas para todas as apostas
-        $quantidade_dezenas = readline("Quantas dezenas para todas as apostas? ");
+    if ($jogo == 1)
+    {
+        $min_dezenas = 6;
+        $max_dezenas = 20;
+    }
+    elseif ($jogo == 2)
+    {
+        $min_dezenas = 5;
+        $max_dezenas = 15;
+    }
+    elseif ($jogo == 3)
+    {
+        $min_dezenas = 15;
+        $max_dezenas = 20;
+    }
+    elseif ($jogo == 4)
+    {
+        $quantidade_dezenas = 50;
+    }
+
+    if ($opcao_qdezenas == 1) 
+    {
+        $quantidade_dezenas = 0;
+        if ($jogo != 4)
+        {
+            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas))
+            {
+                comprando_dezenas();
+                $quantidade_dezenas = readline("Quantas dezenas para todas as apostas? ");
+            }
+        }
         $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
-        // Preenche todas as apostas com a mesma quantidade de dezenas
         $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
-    } elseif ($opcao_qdezenas == 2) {
-        // Definir a quantidade de dezenas manualmente para cada aposta
+    } elseif ($opcao_qdezenas == 2) 
+    {
         for ($i = 0; $i < $n_apostas; $i++) {
-            $quantidade_dezenas = readline("Quantas dezenas para a aposta " . ($i + 1) . "? ");
-            $valor_total += obter_valor_aposta($tipo, $quantidade_dezenas); // Somando o valor total
+            $quantidade_dezenas = 0;
+            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas)) 
+            {
+                comprando_dezenas();
+                $quantidade_dezenas = readline("Quantas dezenas para a aposta " . ($i + 1) . "? ");
+                $valor_total += obter_valor_aposta($tipo, $quantidade_dezenas); 
+            }
+            
             $quantidade_dezenas_por_aposta[] = $quantidade_dezenas;
         }
     }
 
     // Exibir o valor total de todas as apostas
-    echo "\nValor total de todas as apostas: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
+    echo "\nValor total: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
 
     // Chama o sorteio após a compra
     sorteio($tipo, $quantidade_dezenas_por_aposta);
@@ -142,9 +183,9 @@ function obter_valor_aposta($tipo, $quantidade_dezenas) {
 function sorteio($tipo, $quantidade_dezenas_por_aposta) {
     // Para o sorteio, vamos usar as informações passadas
     foreach ($quantidade_dezenas_por_aposta as $i => $quantidade_dezenas) {
-        echo "\nAposta " . ($i + 1) . " - Sorteando " . $quantidade_dezenas . " dezenas:\n";
+        echo "\nAposta " . ($i + 1) . " - Sorteadas " . $quantidade_dezenas . " dezenas:\n";
         $numeros_sorteados = sorteio_numeros($tipo, $quantidade_dezenas);
-        echo "Números sorteados: " . implode(", ", $numeros_sorteados) . "\n";
+        echo "Números sorteados: " . implode(" - ", $numeros_sorteados) . "\n";
     }
 }
 
@@ -160,7 +201,6 @@ function sorteio_numeros($tipo, $quantidade_dezenas) {
         $max_dezenas = 100;
     }
 
-    // Gerando os números sorteados
     $numeros_sorteados = [];
     while (count($numeros_sorteados) < $quantidade_dezenas) {
         $sorteado = rand(1, $max_dezenas);
@@ -189,3 +229,18 @@ function div($tamanho) {
         echo "_ ";
     }
 }
+
+function comprando_dezenas()
+{
+    global $min_dezenas, $max_dezenas;
+    system('clear');
+                div(29);
+                echo ("\n\nComprando dezenas \u{1F4B2}\u{1F3B2}\n\nEscolha um número entre $min_dezenas e $max_dezenas.\nQuanto maior o valor inserido, mais alto o valor da aposta.\n\n");
+                div(29);
+                echo "\n\n";
+}
+
+
+ainda falta sortear o valor premiado, que também depende dos 4 jogos, e depois conferir se há 
+alguma das apostas que contem os numeros sorteados. Ele também deve contar quantos acertos cada uma 
+das apostas teve. Se ele acertar todos os numeros sorteados, é jogo ganho.
