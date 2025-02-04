@@ -59,6 +59,7 @@ function qapostas($tipo) {
         }
     } else
     {
+        $quantidade_dezenas = 50;
         $opcao_qdezenas = 1;
     }
 
@@ -89,14 +90,13 @@ function qapostas($tipo) {
     if ($opcao_qdezenas == 1) 
     {
         $quantidade_dezenas = 0;
-        if ($jogo != 4)
-        {
+        
             while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas))
             {
                 comprando_dezenas();
                 $quantidade_dezenas = readline("Quantas dezenas para todas as apostas? ");
             }
-        }
+
         $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
         $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
     } elseif ($opcao_qdezenas == 2) 
@@ -113,6 +113,7 @@ function qapostas($tipo) {
             $quantidade_dezenas_por_aposta[] = $quantidade_dezenas;
         }
     }
+    
 
     // Exibir o valor total de todas as apostas
     echo "\nValor total: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
@@ -241,6 +242,9 @@ function comprando_dezenas()
 }
 
 
-ainda falta sortear o valor premiado, que também depende dos 4 jogos, e depois conferir se há 
+/*ainda falta sortear o valor premiado, que também depende dos 4 jogos, e depois conferir se há 
 alguma das apostas que contem os numeros sorteados. Ele também deve contar quantos acertos cada uma 
-das apostas teve. Se ele acertar todos os numeros sorteados, é jogo ganho.
+das apostas teve. Se ele acertar todos os numeros sorteados, é jogo ganho.*/
+
+/*Também precisamos corrigir o problema da lotomania. Ela deve ser automaticamente 50 dezenas, e já 
+sorteia de uma vez. No estado atual,ela não sorteia nenhum numero porque não grava as 50 dezenas.*/
