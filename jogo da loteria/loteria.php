@@ -47,18 +47,16 @@ function qapostas($tipo) {
     $total_apostas += $n_apostas;
 
     $opcao_qdezenas = 0;
-    if ($jogo != 4)
-    {
-        while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) 
-        {
+    if ($jogo != 4) {
+        while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) {
             system('clear');
             div(15);
             echo ("\n\n[1] Comprar a mesma quantidade de dezenas para todas as apostas\n\n[2] Comprar dezenas manualmente para cada aposta\n\n");
             div(15);
             $opcao_qdezenas = readline("Sua escolha: ");
         }
-    } else
-    {
+    } else {
+        // No caso da Lotomania, já vamos pular a parte de escolha de dezenas
         $quantidade_dezenas = 50;
         $opcao_qdezenas = 1;
     }
@@ -67,55 +65,48 @@ function qapostas($tipo) {
     $quantidade_dezenas_por_aposta = [];
     global $min_dezenas, $max_dezenas;
 
-    if ($jogo == 1)
-    {
+    if ($jogo == 1) {
         $min_dezenas = 6;
         $max_dezenas = 20;
-    }
-    elseif ($jogo == 2)
-    {
+    } elseif ($jogo == 2) {
         $min_dezenas = 5;
         $max_dezenas = 15;
-    }
-    elseif ($jogo == 3)
-    {
+    } elseif ($jogo == 3) {
         $min_dezenas = 15;
         $max_dezenas = 20;
-    }
-    elseif ($jogo == 4)
-    {
+    } elseif ($jogo == 4) {
+        // Lotomania tem 50 dezenas fixas
         $quantidade_dezenas = 50;
     }
 
-    if ($opcao_qdezenas == 1) 
-    {
-        $quantidade_dezenas = 0;
-        
-            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas))
-            {
+    if ($opcao_qdezenas == 1) {
+        if ($jogo == 4) {
+            // Para Lotomania, já está definida a quantidade de dezenas
+            $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
+            $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
+        } else {
+            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas)) {
                 comprando_dezenas();
                 $quantidade_dezenas = readline("Quantas dezenas para todas as apostas? ");
             }
 
-        $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
-        $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
-    } elseif ($opcao_qdezenas == 2) 
-    {
+            $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
+            $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
+        }
+    } elseif ($opcao_qdezenas == 2) {
         for ($i = 0; $i < $n_apostas; $i++) {
             $quantidade_dezenas = 0;
-            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas)) 
-            {
+            while (!($quantidade_dezenas >= $min_dezenas && $quantidade_dezenas <= $max_dezenas)) {
                 comprando_dezenas();
                 $quantidade_dezenas = readline("Quantas dezenas para a aposta " . ($i + 1) . "? ");
-                $valor_total += obter_valor_aposta($tipo, $quantidade_dezenas); 
+                $valor_total += obter_valor_aposta($tipo, $quantidade_dezenas);
             }
-            
+
             $quantidade_dezenas_por_aposta[] = $quantidade_dezenas;
         }
     }
-    
 
-    // Exibir o valor total de todas as apostas
+    // Exibir o valor total para todos os jogos, incluindo Lotomania
     echo "\nValor total: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
 
     // Chama o sorteio após a compra
@@ -184,9 +175,12 @@ function obter_valor_aposta($tipo, $quantidade_dezenas) {
 function sorteio($tipo, $quantidade_dezenas_por_aposta) {
     // Para o sorteio, vamos usar as informações passadas
     foreach ($quantidade_dezenas_por_aposta as $i => $quantidade_dezenas) {
-        echo "\nAposta " . ($i + 1) . " - Sorteadas " . $quantidade_dezenas . " dezenas:\n";
-        $numeros_sorteados = sorteio_numeros($tipo, $quantidade_dezenas);
-        echo "Números sorteados: " . implode(" - ", $numeros_sorteados) . "\n";
+        // Para Lotomania, não exibe o valor total e nem aposta com 0 dezenas
+        if ($quantidade_dezenas > 0) {
+            echo "\nAposta " . ($i + 1) . " - Sorteadas " . $quantidade_dezenas . " dezenas:\n";
+            $numeros_sorteados = sorteio_numeros($tipo, $quantidade_dezenas);
+            echo "Números sorteados: " . implode(" - ", $numeros_sorteados) . "\n";
+        }
     }
 }
 
@@ -231,20 +225,12 @@ function div($tamanho) {
     }
 }
 
-function comprando_dezenas()
-{
+function comprando_dezenas() {
     global $min_dezenas, $max_dezenas;
     system('clear');
-                div(29);
-                echo ("\n\nComprando dezenas \u{1F4B2}\u{1F3B2}\n\nEscolha um número entre $min_dezenas e $max_dezenas.\nQuanto maior o valor inserido, mais alto o valor da aposta.\n\n");
-                div(29);
-                echo "\n\n";
+    div(29);
+    echo ("\n\nComprando dezenas \u{1F4B2}\u{1F3B2}\n\nEscolha um número entre $min_dezenas e $max_dezenas.\nQuanto maior o valor inserido, mais alto o valor da aposta.\n\n");
+    div(29);
+    echo "\n\n";
 }
 
-
-/*ainda falta sortear o valor premiado, que também depende dos 4 jogos, e depois conferir se há 
-alguma das apostas que contem os numeros sorteados. Ele também deve contar quantos acertos cada uma 
-das apostas teve. Se ele acertar todos os numeros sorteados, é jogo ganho.*/
-
-/*Também precisamos corrigir o problema da lotomania. Ela deve ser automaticamente 50 dezenas, e já 
-sorteia de uma vez. No estado atual,ela não sorteia nenhum numero porque não grava as 50 dezenas.*/
