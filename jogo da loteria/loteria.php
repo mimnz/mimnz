@@ -272,9 +272,9 @@ function sorteio_premiados($tipo) {
 function sair() {
     global $lucro, $total_apostas;
     system('clear');
-    div(17);
+    div(40);
     echo("\n\nObrigado por jogar! Código desenvolvido pelas alunas Milena e Brenda do 1°TDS.\n");
-    div(17);
+    div(40);
     echo "\n\n";
     exit;
 }
