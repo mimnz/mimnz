@@ -55,9 +55,10 @@ function qapostas($tipo) {
     if ($jogo != 4) {
         while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) {
             system('clear');
-            div(15);
+            div(32);
             echo ("\n\n[1] Comprar a mesma quantidade de dezenas para todas as apostas\n\n[2] Comprar dezenas manualmente para cada aposta\n\n");
-            div(15);
+            div(32);
+            echo ("\n\n");
             $opcao_qdezenas = readline("Sua escolha: ");
         }
     } else {
@@ -248,7 +249,7 @@ function sorteio_premiados($tipo) {
         $quantidade_dezenas = 15; // Lotofácil sorteia 15 números
     } elseif ($tipo == "lotomania") {
         $max_dezenas = 100;
-        $quantidade_dezenas = 50; // Lotomania sorteia 50 números
+        $quantidade_dezenas = 20; // Lotomania sorteia 20 números
     }
 
     // Sorteio dos números premiados
@@ -271,9 +272,10 @@ function sorteio_premiados($tipo) {
 function sair() {
     global $lucro, $total_apostas;
     system('clear');
-    div(15);
-    echo("\nObrigado por jogar! Volte sempre.\n");
-    div(15);
+    div(17);
+    echo("\n\nObrigado por jogar! Volte sempre.\n");
+    div(17);
+    echo "\n\n";
     exit;
 }
 
