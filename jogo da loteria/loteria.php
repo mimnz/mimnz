@@ -3,6 +3,8 @@
 $jogo = 0;
 $total_apostas = 0;
 $lucro = 0;
+$maior_quantidade_acertos = 0;
+$aposta_maior_acerto = [];
 
 while ($jogo != 1 && $jogo != 2 && $jogo != 3 && $jogo != 4 && $jogo != 5) {
     menu();
@@ -32,9 +34,11 @@ function menu() {
 }
 
 function qapostas($tipo) {
-    global $total_apostas;
-    global $jogo;
-
+    global $total_apostas, $maior_quantidade_acertos, $aposta_maior_acerto, $jogo;
+    
+    // Sorteio dos números premiados antes das apostas
+    $numeros_premiados = sorteio_premiados($tipo);
+    
     do {
         system('clear');
         $n_apostas = readline("Quantas apostas você deseja comprar?: ");
@@ -46,6 +50,7 @@ function qapostas($tipo) {
     echo "Você comprou $n_apostas apostas.\n";
     $total_apostas += $n_apostas;
 
+    // O código para escolher quantas dezenas aqui permanece o mesmo
     $opcao_qdezenas = 0;
     if ($jogo != 4) {
         while ($opcao_qdezenas != 1 && $opcao_qdezenas != 2) {
@@ -56,7 +61,6 @@ function qapostas($tipo) {
             $opcao_qdezenas = readline("Sua escolha: ");
         }
     } else {
-        // No caso da Lotomania, já vamos pular a parte de escolha de dezenas
         $quantidade_dezenas = 50;
         $opcao_qdezenas = 1;
     }
@@ -75,13 +79,11 @@ function qapostas($tipo) {
         $min_dezenas = 15;
         $max_dezenas = 20;
     } elseif ($jogo == 4) {
-        // Lotomania tem 50 dezenas fixas
         $quantidade_dezenas = 50;
     }
 
     if ($opcao_qdezenas == 1) {
         if ($jogo == 4) {
-            // Para Lotomania, já está definida a quantidade de dezenas
             $valor_total = $n_apostas * obter_valor_aposta($tipo, $quantidade_dezenas);
             $quantidade_dezenas_por_aposta = array_fill(0, $n_apostas, $quantidade_dezenas);
         } else {
@@ -106,11 +108,10 @@ function qapostas($tipo) {
         }
     }
 
-    // Exibir o valor total para todos os jogos, incluindo Lotomania
     echo "\nValor total: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
 
     // Chama o sorteio após a compra
-    sorteio($tipo, $quantidade_dezenas_por_aposta);
+    sorteio($tipo, $quantidade_dezenas_por_aposta, $numeros_premiados, $valor_total);
 }
 
 function obter_valor_aposta($tipo, $quantidade_dezenas) {
@@ -172,16 +173,40 @@ function obter_valor_aposta($tipo, $quantidade_dezenas) {
     return isset($valores_apostas[$tipo][$quantidade_dezenas]) ? $valores_apostas[$tipo][$quantidade_dezenas] : 0;
 }
 
-function sorteio($tipo, $quantidade_dezenas_por_aposta) {
-    // Para o sorteio, vamos usar as informações passadas
+function sorteio($tipo, $quantidade_dezenas_por_aposta, $numeros_premiados, $valor_total) {
+    global $maior_quantidade_acertos, $aposta_maior_acerto;
+    
     foreach ($quantidade_dezenas_por_aposta as $i => $quantidade_dezenas) {
-        // Para Lotomania, não exibe o valor total e nem aposta com 0 dezenas
-        if ($quantidade_dezenas > 0) {
-            echo "\nAposta " . ($i + 1) . " - Sorteadas " . $quantidade_dezenas . " dezenas:\n";
-            $numeros_sorteados = sorteio_numeros($tipo, $quantidade_dezenas);
-            echo "Números sorteados: " . implode(" - ", $numeros_sorteados) . "\n";
+        // Sorteio dos números da aposta
+        $numeros_sorteados = sorteio_numeros($tipo, $quantidade_dezenas);
+        
+        // Verifica os acertos
+        $acertos = count(array_intersect($numeros_sorteados, $numeros_premiados));
+        
+        // Exibe os detalhes da aposta com 1 segundo de intervalo
+        system('clear');  // Limpa o terminal para mostrar a aposta de forma isolada
+        echo "\nAposta " . ($i + 1) . " - Sorteadas " . $quantidade_dezenas . " dezenas:\n";
+        echo "Números sorteados: " . implode(" - ", $numeros_sorteados) . "\n";
+        echo "Acertos: $acertos\n";
+
+        // Atualiza a maior quantidade de acertos
+        if ($acertos > $maior_quantidade_acertos) {
+            $maior_quantidade_acertos = $acertos;
+            $aposta_maior_acerto = $numeros_sorteados;
         }
+
+        // Pausa de 1 segundo entre as apostas
+        sleep(1);
     }
+
+    // Limpa a tela após todas as apostas
+    system('clear');
+    
+    // Exibe os números premiados e as informações finais
+    echo "\nSorteio dos números premiados: " . implode(" - ", $numeros_premiados) . "\n";
+    echo "\nMaior quantidade de acertos: $maior_quantidade_acertos\n";
+    echo "Aposta com mais acertos: " . implode(" - ", $aposta_maior_acerto) . "\n";
+    echo "Total gasto: R$ " . number_format($valor_total, 2, ',', '.') . "\n";
 }
 
 function sorteio_numeros($tipo, $quantidade_dezenas) {
@@ -210,11 +235,44 @@ function sorteio_numeros($tipo, $quantidade_dezenas) {
     return $numeros_sorteados;
 }
 
+function sorteio_premiados($tipo) {
+    // Determinando o limite máximo de acordo com o tipo de jogo
+    if ($tipo == "megasena") {
+        $max_dezenas = 60;
+        $quantidade_dezenas = 6;  // Mega-Sena sorteia 6 números
+    } elseif ($tipo == "quina") {
+        $max_dezenas = 80;
+        $quantidade_dezenas = 5;  // Quina sorteia 5 números
+    } elseif ($tipo == "lotofacil") {
+        $max_dezenas = 25;
+        $quantidade_dezenas = 15; // Lotofácil sorteia 15 números
+    } elseif ($tipo == "lotomania") {
+        $max_dezenas = 100;
+        $quantidade_dezenas = 50; // Lotomania sorteia 50 números
+    }
+
+    // Sorteio dos números premiados
+    $numeros_premiados = [];
+    while (count($numeros_premiados) < $quantidade_dezenas) {
+        $sorteado = rand(1, $max_dezenas);
+        if (!in_array($sorteado, $numeros_premiados)) {
+            $numeros_premiados[] = $sorteado;
+        }
+    }
+
+    // Ordena os números sorteados de forma crescente
+    sort($numeros_premiados);
+
+    echo "\nSorteio dos números premiados: " . implode(" - ", $numeros_premiados) . "\n";
+
+    return $numeros_premiados;
+}
+
 function sair() {
     global $lucro, $total_apostas;
     system('clear');
     div(15);
-    echo("\nObrigado por jogar! Volte sempre.\nSeu lucro: R$ $lucro\nApostou $total_apostas vezes.\n");
+    echo("\nObrigado por jogar! Volte sempre.\n");
     div(15);
     exit;
 }
@@ -233,4 +291,3 @@ function comprando_dezenas() {
     div(29);
     echo "\n\n";
 }
-
